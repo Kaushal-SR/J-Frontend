@@ -14,7 +14,11 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
-const Header = () => {
+interface HeaderProps {
+  title?: string;
+}
+
+const Header = ({ title }: HeaderProps) => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -38,6 +42,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
+          {title && <span>{title}</span>}
           <Link to="/" onClick={closeMenu} className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-blue-500 flex items-center justify-center">
               <span className="text-xl font-bold text-white">日</span>
