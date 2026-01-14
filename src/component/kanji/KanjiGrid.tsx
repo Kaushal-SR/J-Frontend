@@ -9,12 +9,12 @@ function KanjiExamplesPopover({ kanji, onClose }: { kanji: any; onClose: (e: Rea
   const visibleExamples = showAll ? sortedExamples : sortedExamples.slice(0, initialCount);
   return (
     <div
-      className="fixed left-0 right-0 top-auto bottom-0 mx-auto mb-4 sm:absolute sm:left-1/2 sm:top-full sm:mt-2 sm:w-80 sm:-translate-x-1/2 bg-white border border-blue-200 rounded-xl shadow-xl p-4 z-50"
-      style={{ width: '100vw', maxWidth: '360px', minWidth: '220px', paddingLeft: 'max(env(safe-area-inset-left), 8px)', paddingRight: 'max(env(safe-area-inset-right), 8px)' }}
+      className="fixed left-1/2 bottom-4 transform -translate-x-1/2 bg-white border border-blue-200 rounded-xl shadow-xl p-4 z-50"
+      style={{ minWidth: '220px', maxWidth: '360px', width: '95vw', maxHeight: '60vh', paddingLeft: 'max(env(safe-area-inset-left), 8px)', paddingRight: 'max(env(safe-area-inset-right), 8px)', overflow: 'hidden' }}
     >
       <div className="font-semibold text-blue-700 mb-2 text-center">Example Words</div>
       {visibleExamples.length > 0 ? (
-        <div className="space-y-2 mb-3">
+        <div className="space-y-2 mb-3 overflow-y-auto" style={{ maxHeight: '32vh' }}>
           {visibleExamples.map((ex: any, idx: number) => (
             <div key={idx} className="p-2 bg-blue-50 rounded-lg">
               <div className="font-bold text-base md:text-lg">{ex.word}</div>
@@ -78,6 +78,14 @@ const KanjiGrid: React.FC<KanjiGridProps> = ({ kanjiList }) => {
   const [hoveredKanjiId, setHoveredKanjiId] = useState<string | null>(null);
   const [selectedKanjiId, setSelectedKanjiId] = useState<string | null>(null);
 
+
+  // Close popover handler for both mobile and desktop
+  const closePopover = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setHoveredKanjiId(null);
+    setSelectedKanjiId(null);
+  };
+
   const showExamplesForId = hoveredKanjiId || selectedKanjiId;
   const exampleKanji = kanjiList.find(k => k.id === showExamplesForId);
 
@@ -104,7 +112,7 @@ const KanjiGrid: React.FC<KanjiGridProps> = ({ kanjiList }) => {
             {(showExamplesForId === k.id && (k.examples && k.examples.length > 0 || (k.onyomi && k.onyomi.length > 0) || (k.kunyomi && k.kunyomi.length > 0))) && (
               <KanjiExamplesPopover
                 kanji={k}
-                onClose={e => { e.stopPropagation(); setSelectedKanjiId(null); }}
+                onClose={closePopover}
               />
             )}
 
