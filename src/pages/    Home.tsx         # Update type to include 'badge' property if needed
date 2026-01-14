@@ -1,0 +1,12 @@
+interface HomeProps {
+    title: string;
+    description: string;
+    action: () => void | Promise<void>;
+    color: string;
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
+    badge?: string; // Added badge property
+}
+
+const Home: React.FC<HomeProps> = ({ title, description, action, color, icon, badge }) => {
+    // Component implementation
+};
