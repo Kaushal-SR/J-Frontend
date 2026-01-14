@@ -1,0 +1,3111 @@
+[{
+    "id": "1",
+    "character": "日",
+    "meaning": "Sun, Day",
+    "onyomi": ["ニチ",
+        "ジツ"],
+    "kunyomi": ["ひ",
+        "か"],
+    "strokes": 4,
+    "jlptLevel": "N5",
+    "radicals": ["日"],
+    "status": "new",
+    "reviewCount": 0,
+    "isBookmarked": false,
+    "examples": [{
+        "word": "日本",
+        "reading": "にほん",
+        "meaning": "Japan"
+    },
+        {
+            "word": "毎日",
+            "reading": "まいにち",
+            "meaning": "Every day"
+        }]
+},
+    {
+        "id": "2",
+        "character": "人",
+        "meaning": "Person",
+        "onyomi": ["ジン",
+            "ニン"],
+        "kunyomi": ["ひと"],
+        "strokes": 2,
+        "jlptLevel": "N5",
+        "radicals": ["人"],
+        "status": "learning",
+        "reviewCount": 3,
+        "isBookmarked": true,
+        "examples": [{
+            "word": "日本人",
+            "reading": "にほんじん",
+            "meaning": "Japanese person"
+        },
+            {
+                "word": "一人",
+                "reading": "ひとり",
+                "meaning": "One person"
+            }]
+    },
+    {
+        "id": "3",
+        "character": "水",
+        "meaning": "Water",
+        "onyomi": ["スイ"],
+        "kunyomi": ["みず"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["水"],
+        "status": "review",
+        "reviewCount": 6,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "水曜日",
+            "reading": "すいようび",
+            "meaning": "Wednesday"
+        },
+            {
+                "word": "水",
+                "reading": "みず",
+                "meaning": "Water"
+            }]
+    },
+    {
+        "id": "4",
+        "character": "月",
+        "meaning": "Moon, Month",
+        "onyomi": ["ゲツ",
+            "ガツ"],
+        "kunyomi": ["つき"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["月"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "月曜日",
+            "reading": "げつようび",
+            "meaning": "Monday"
+        },
+            {
+                "word": "一月",
+                "reading": "いちがつ",
+                "meaning": "January"
+            }]
+    },
+    {
+        "id": "5",
+        "character": "火",
+        "meaning": "Fire",
+        "onyomi": ["カ"],
+        "kunyomi": ["ひ"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["火"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "火曜日",
+            "reading": "かようび",
+            "meaning": "Tuesday"
+        },
+            {
+                "word": "火",
+                "reading": "ひ",
+                "meaning": "Fire"
+            }]
+    },
+    {
+        "id": "6",
+        "character": "木",
+        "meaning": "Tree, Wood",
+        "onyomi": ["モク",
+            "ボク"],
+        "kunyomi": ["き"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "木曜日",
+            "reading": "もくようび",
+            "meaning": "Thursday"
+        },
+            {
+                "word": "木",
+                "reading": "き",
+                "meaning": "Tree"
+            }]
+    },
+    {
+        "id": "7",
+        "character": "金",
+        "meaning": "Gold, Money",
+        "onyomi": ["キン"],
+        "kunyomi": ["かね"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["金"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "金曜日",
+            "reading": "きんようび",
+            "meaning": "Friday"
+        },
+            {
+                "word": "お金",
+                "reading": "おかね",
+                "meaning": "Money"
+            }]
+    },
+    {
+        "id": "8",
+        "character": "土",
+        "meaning": "Earth, Soil",
+        "onyomi": ["ド",
+            "ト"],
+        "kunyomi": ["つち"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["土"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "土曜日",
+            "reading": "どようび",
+            "meaning": "Saturday"
+        },
+            {
+                "word": "土",
+                "reading": "つち",
+                "meaning": "Soil"
+            }]
+    },
+    {
+        "id": "9",
+        "character": "一",
+        "meaning": "One",
+        "onyomi": ["イチ"],
+        "kunyomi": ["ひと"],
+        "strokes": 1,
+        "jlptLevel": "N5",
+        "radicals": ["一"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "一人",
+            "reading": "ひとり",
+            "meaning": "One person"
+        },
+            {
+                "word": "一日",
+                "reading": "いちにち",
+                "meaning": "One day"
+            }]
+    },
+    {
+        "id": "10",
+        "character": "二",
+        "meaning": "Two",
+        "onyomi": ["ニ"],
+        "kunyomi": ["ふた"],
+        "strokes": 2,
+        "jlptLevel": "N5",
+        "radicals": ["二"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "二人",
+            "reading": "ふたり",
+            "meaning": "Two people"
+        },
+            {
+                "word": "二月",
+                "reading": "にがつ",
+                "meaning": "February"
+            }]
+    },
+    {
+        "id": "11",
+        "character": "三",
+        "meaning": "Three",
+        "onyomi": ["サン"],
+        "kunyomi": ["みっ"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["一"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "三人",
+            "reading": "さんにん",
+            "meaning": "Three people"
+        },
+            {
+                "word": "三月",
+                "reading": "さんがつ",
+                "meaning": "March"
+            }]
+    },
+    {
+        "id": "12",
+        "character": "四",
+        "meaning": "Four",
+        "onyomi": ["シ"],
+        "kunyomi": ["よん",
+            "よ"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["囗",
+            "儿"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "四月",
+            "reading": "しがつ",
+            "meaning": "April"
+        },
+            {
+                "word": "四人",
+                "reading": "よにん",
+                "meaning": "Four people"
+            }]
+    },
+    {
+        "id": "13",
+        "character": "五",
+        "meaning": "Five",
+        "onyomi": ["ゴ"],
+        "kunyomi": ["いつ"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["二"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "五月",
+            "reading": "ごがつ",
+            "meaning": "May"
+        },
+            {
+                "word": "五人",
+                "reading": "ごにん",
+                "meaning": "Five people"
+            }]
+    },
+
+    {
+        "id": "14",
+        "character": "六",
+        "meaning": "Six",
+        "onyomi": ["ロク"],
+        "kunyomi": ["むっ"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["八"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "六月",
+            "reading": "ろくがつ",
+            "meaning": "June"
+        },
+            {
+                "word": "六人",
+                "reading": "ろくにん",
+                "meaning": "Six people"
+            }]
+    },
+    {
+        "id": "15",
+        "character": "七",
+        "meaning": "Seven",
+        "onyomi": ["シチ"],
+        "kunyomi": ["なな"],
+        "strokes": 2,
+        "jlptLevel": "N5",
+        "radicals": ["一"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "七月",
+            "reading": "しちがつ",
+            "meaning": "July"
+        },
+            {
+                "word": "七人",
+                "reading": "ななにん",
+                "meaning": "Seven people"
+            }]
+    },
+    {
+        "id": "16",
+        "character": "八",
+        "meaning": "Eight",
+        "onyomi": ["ハチ"],
+        "kunyomi": ["やっ"],
+        "strokes": 2,
+        "jlptLevel": "N5",
+        "radicals": ["八"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "八月",
+            "reading": "はちがつ",
+            "meaning": "August"
+        },
+            {
+                "word": "八人",
+                "reading": "はちにん",
+                "meaning": "Eight people"
+            }]
+    },
+    {
+        "id": "17",
+        "character": "九",
+        "meaning": "Nine",
+        "onyomi": ["キュウ"],
+        "kunyomi": ["ここの"],
+        "strokes": 2,
+        "jlptLevel": "N5",
+        "radicals": ["乙"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "九月",
+            "reading": "くがつ",
+            "meaning": "September"
+        },
+            {
+                "word": "九人",
+                "reading": "きゅうにん",
+                "meaning": "Nine people"
+            }]
+    },
+    {
+        "id": "18",
+        "character": "十",
+        "meaning": "Ten",
+        "onyomi": ["ジュウ"],
+        "kunyomi": ["とお"],
+        "strokes": 2,
+        "jlptLevel": "N5",
+        "radicals": ["十"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "十月",
+            "reading": "じゅうがつ",
+            "meaning": "October"
+        },
+            {
+                "word": "十人",
+                "reading": "じゅうにん",
+                "meaning": "Ten people"
+            }]
+    },
+    {
+        "id": "19",
+        "character": "口",
+  "meaning": "Mouth",
+  "onyomi": ["コウ", "ク"],
+  "kunyomi": ["くち"],
+  "strokes": 3,
+  "jlptLevel": "N5",
+  "radicals": ["口"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "口",
+      "reading": "くち",
+      "meaning": "Mouth"
+    },
+    {
+      "word": "出口",
+      "reading": "でぐち",
+      "meaning": "Exit"
+    }
+  ]
+},
+    {
+        "id": "20",
+        "character": "男",
+        "meaning": "Man",
+        "onyomi": ["ダン",
+            "ナン"],
+        "kunyomi": ["おとこ"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["田",
+            "力"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "男の人",
+            "reading": "おとこのひと",
+            "meaning": "Man"
+        },
+            {
+                "word": "男性",
+                "reading": "だんせい",
+                "meaning": "Male"
+            }]
+    },
+    {
+        "id": "21",
+        "character": "女",
+        "meaning": "Woman",
+        "onyomi": ["ジョ"],
+        "kunyomi": ["おんな"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["女"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "女の人",
+            "reading": "おんなのひと",
+            "meaning": "Woman"
+        },
+            {
+                "word": "女性",
+                "reading": "じょせい",
+                "meaning": "Female"
+            }]
+    },
+    {
+        "id": "22",
+        "character": "子",
+        "meaning": "Child",
+        "onyomi": ["シ"],
+        "kunyomi": ["こ"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["子"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "子ども",
+            "reading": "こども",
+            "meaning": "Child"
+        },
+            {
+                "word": "女の子",
+                "reading": "おんなのこ",
+                "meaning": "Girl"
+            }]
+    },
+    {
+        "id": "23",
+        "character": "友",
+        "meaning": "Friend",
+        "onyomi": ["ユウ"],
+        "kunyomi": ["とも"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["又"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "友だち",
+            "reading": "ともだち",
+            "meaning": "Friend"
+        },
+            {
+                "word": "友人",
+                "reading": "ゆうじん",
+                "meaning": "Friend (formal)"
+            }]
+    },
+
+    {
+        "id": "24",
+        "character": "上",
+        "meaning": "Up, Above",
+        "onyomi": ["ジョウ"],
+        "kunyomi": ["うえ",
+            "あ"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["一"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "上",
+            "reading": "うえ",
+            "meaning": "Above"
+        },
+            {
+                "word": "上手",
+                "reading": "じょうず",
+                "meaning": "Skillful"
+            }]
+    },
+    {
+        "id": "25",
+        "character": "下",
+        "meaning": "Down, Below",
+        "onyomi": ["カ",
+            "ゲ"],
+        "kunyomi": ["した",
+            "さ"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["一"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "下",
+            "reading": "した",
+            "meaning": "Below"
+        },
+            {
+                "word": "地下",
+                "reading": "ちか",
+                "meaning": "Underground"
+            }]
+    },
+    {
+        "id": "26",
+        "character": "中",
+        "meaning": "Middle, Inside",
+        "onyomi": ["チュウ"],
+        "kunyomi": ["なか"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["丨"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "中",
+            "reading": "なか",
+            "meaning": "Inside"
+        },
+            {
+                "word": "中国",
+                "reading": "ちゅうごく",
+                "meaning": "China"
+            }]
+    },
+    {
+        "id": "27",
+        "character": "外",
+        "meaning": "Outside",
+        "onyomi": ["ガイ"],
+        "kunyomi": ["そと"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["夕",
+            "卜"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "外",
+            "reading": "そと",
+            "meaning": "Outside"
+        },
+            {
+                "word": "外国",
+                "reading": "がいこく",
+                "meaning": "Foreign country"
+            }]
+    },
+    {
+        "id": "28",
+        "character": "本",
+        "meaning": "Book, Origin",
+        "onyomi": ["ホン"],
+        "kunyomi": ["もと"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "本",
+            "reading": "ほん",
+            "meaning": "Book"
+        },
+            {
+                "word": "日本",
+                "reading": "にほん",
+                "meaning": "Japan"
+            }]
+    },
+    {
+        "id": "29",
+        "character": "行",
+        "meaning": "Go",
+        "onyomi": ["コウ",
+            "ギョウ"],
+        "kunyomi": ["い"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["行"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "行く",
+            "reading": "いく",
+            "meaning": "To go"
+        },
+            {
+                "word": "銀行",
+                "reading": "ぎんこう",
+                "meaning": "Bank"
+            }]
+    },
+    {
+        "id": "30",
+        "character": "来",
+        "meaning": "Come",
+        "onyomi": ["ライ"],
+        "kunyomi": ["く",
+            "き"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "来る",
+            "reading": "くる",
+            "meaning": "To come"
+        },
+            {
+                "word": "来年",
+                "reading": "らいねん",
+                "meaning": "Next year"
+            }]
+    },
+    {
+        "id": "31",
+        "character": "見",
+        "meaning": "See, Look",
+        "onyomi": ["ケン"],
+        "kunyomi": ["み"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["見"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "見る",
+            "reading": "みる",
+            "meaning": "To see"
+        },
+            {
+                "word": "見学",
+                "reading": "けんがく",
+                "meaning": "Observation, study visit"
+            }]
+    },
+    {
+        "id": "32",
+        "character": "食",
+        "meaning": "Eat, Food",
+        "onyomi": ["ショク"],
+        "kunyomi": ["た"],
+        "strokes": 9,
+        "jlptLevel": "N5",
+        "radicals": ["食"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "食べる",
+            "reading": "たべる",
+            "meaning": "To eat"
+        },
+            {
+                "word": "食事",
+                "reading": "しょくじ",
+                "meaning": "Meal"
+            }]
+    },
+    {
+        "id": "33",
+        "character": "飲",
+        "meaning": "Drink",
+        "onyomi": ["イン"],
+        "kunyomi": ["の"],
+        "strokes": 12,
+        "jlptLevel": "N5",
+        "radicals": ["食"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "飲む",
+            "reading": "のむ",
+            "meaning": "To drink"
+        },
+            {
+                "word": "飲み物",
+                "reading": "のみもの",
+                "meaning": "Drink, beverage"
+            }]
+    },
+    {
+        "id": "34",
+        "character": "大",
+        "meaning": "Big, Large",
+        "onyomi": ["ダイ",
+            "タイ"],
+        "kunyomi": ["おお"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["大"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "大きい",
+            "reading": "おおきい",
+            "meaning": "Big"
+        },
+            {
+                "word": "大学",
+                "reading": "だいがく",
+                "meaning": "University"
+            }]
+    },
+    {
+        "id": "35",
+        "character": "小",
+        "meaning": "Small",
+        "onyomi": ["ショウ"],
+        "kunyomi": ["ちい"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["小"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "小さい",
+            "reading": "ちいさい",
+            "meaning": "Small"
+        },
+            {
+                "word": "小学校",
+                "reading": "しょうがっこう",
+                "meaning": "Elementary school"
+            }]
+    },
+    {
+        "id": "36",
+        "character": "多",
+        "meaning": "Many",
+        "onyomi": ["タ"],
+        "kunyomi": ["おお"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["夕"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "多い",
+            "reading": "おおい",
+            "meaning": "Many"
+        },
+            {
+                "word": "多分",
+                "reading": "たぶん",
+                "meaning": "Probably"
+            }]
+    },
+    {
+        "id": "37",
+        "character": "少",
+        "meaning": "Few, Little",
+        "onyomi": ["ショウ"],
+        "kunyomi": ["すく"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["小"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "少ない",
+            "reading": "すくない",
+            "meaning": "Few"
+        },
+            {
+                "word": "少し",
+                "reading": "すこし",
+                "meaning": "A little"
+            }]
+    },
+    {
+        "id": "38",
+        "character": "早",
+        "meaning": "Early, Fast",
+        "onyomi": ["ソウ"],
+        "kunyomi": ["はや"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["日",
+            "十"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "早い",
+            "reading": "はやい",
+            "meaning": "Early"
+        },
+            {
+                "word": "早口",
+                "reading": "はやくち",
+                "meaning": "Fast speech"
+            }]
+    },
+
+    {
+        "id": "39",
+        "character": "長",
+        "meaning": "Long",
+        "onyomi": ["チョウ"],
+        "kunyomi": ["なが"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["長"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "長い",
+            "reading": "ながい",
+            "meaning": "Long"
+        },
+            {
+                "word": "校長",
+                "reading": "こうちょう",
+                "meaning": "Principal"
+            }]
+    },
+    {
+        "id": "40",
+        "character": "高",
+        "meaning": "High, Expensive",
+        "onyomi": ["コウ"],
+        "kunyomi": ["たか"],
+        "strokes": 10,
+        "jlptLevel": "N5",
+        "radicals": ["高"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "高い",
+            "reading": "たかい",
+            "meaning": "High, expensive"
+        },
+            {
+                "word": "高校",
+                "reading": "こうこう",
+                "meaning": "High school"
+            }]
+    },
+    {
+        "id": "41",
+        "character": "安",
+        "meaning": "Cheap, Safe",
+        "onyomi": ["アン"],
+        "kunyomi": ["やす"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["宀",
+            "女"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "安い",
+            "reading": "やすい",
+            "meaning": "Cheap"
+        },
+            {
+                "word": "安全",
+                "reading": "あんぜん",
+                "meaning": "Safety"
+            }]
+    },
+    {
+        "id": "42",
+        "character": "新",
+        "meaning": "New",
+        "onyomi": ["シン"],
+        "kunyomi": ["あたら"],
+        "strokes": 13,
+        "jlptLevel": "N5",
+        "radicals": ["斤",
+            "木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "新しい",
+            "reading": "あたらしい",
+            "meaning": "New"
+        },
+            {
+                "word": "新聞",
+                "reading": "しんぶん",
+                "meaning": "Newspaper"
+            }]
+    },
+    {
+        "id": "43",
+        "character": "古",
+        "meaning": "Old",
+        "onyomi": ["コ"],
+        "kunyomi": ["ふる"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["口",
+            "十"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "古い",
+            "reading": "ふるい",
+            "meaning": "Old"
+        },
+            {
+                "word": "中古",
+                "reading": "ちゅうこ",
+                "meaning": "Second-hand"
+            }]
+    },
+    {
+        "id": "44",
+        "character": "白",
+        "meaning": "White",
+        "onyomi": ["ハク"],
+        "kunyomi": ["しろ"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["白"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "白い",
+            "reading": "しろい",
+            "meaning": "White"
+        },
+            {
+                "word": "白紙",
+                "reading": "はくし",
+                "meaning": "Blank paper"
+            }]
+    },
+    {
+        "id": "45",
+        "character": "黒",
+        "meaning": "Black",
+        "onyomi": ["コク"],
+        "kunyomi": ["くろ"],
+        "strokes": 11,
+        "jlptLevel": "N5",
+        "radicals": ["黒"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "黒い",
+            "reading": "くろい",
+            "meaning": "Black"
+        },
+            {
+                "word": "黒板",
+                "reading": "こくばん",
+                "meaning": "Blackboard"
+            }]
+    },
+    {
+        "id": "46",
+        "character": "赤",
+        "meaning": "Red",
+        "onyomi": ["セキ"],
+        "kunyomi": ["あか"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["赤"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "赤い",
+            "reading": "あかい",
+            "meaning": "Red"
+        },
+            {
+                "word": "赤ちゃん",
+                "reading": "あかちゃん",
+                "meaning": "Baby"
+            }]
+    },
+    {
+        "id": "47",
+        "character": "青",
+        "meaning": "Blue",
+        "onyomi": ["セイ"],
+        "kunyomi": ["あお"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["青"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "青い",
+            "reading": "あおい",
+            "meaning": "Blue"
+        },
+            {
+                "word": "青年",
+                "reading": "せいねん",
+                "meaning": "Youth"
+            }]
+    },
+    {
+        "id": "48",
+        "character": "天",
+        "meaning": "Heaven, Sky",
+        "onyomi": ["テン"],
+        "kunyomi": ["あま"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["大"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "天気",
+            "reading": "てんき",
+            "meaning": "Weather"
+        },
+            {
+                "word": "天国",
+                "reading": "てんごく",
+                "meaning": "Heaven"
+            }]
+    },
+
+    {
+        "id": "49",
+        "character": "気",
+        "meaning": "Spirit, Air, Mood",
+        "onyomi": ["キ"],
+        "kunyomi": [],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["气"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "元気",
+            "reading": "げんき",
+            "meaning": "Healthy, energetic"
+        },
+            {
+                "word": "天気",
+                "reading": "てんき",
+                "meaning": "Weather"
+            }]
+    },
+    {
+        "id": "50",
+        "character": "雨",
+        "meaning": "Rain",
+        "onyomi": ["ウ"],
+        "kunyomi": ["あめ"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["雨"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "雨",
+            "reading": "あめ",
+            "meaning": "Rain"
+        },
+            {
+                "word": "雨天",
+                "reading": "うてん",
+                "meaning": "Rainy weather"
+            }]
+    },
+    {
+        "id": "51",
+        "character": "電",
+        "meaning": "Electricity",
+        "onyomi": ["デン"],
+        "kunyomi": [],
+        "strokes": 13,
+        "jlptLevel": "N5",
+        "radicals": ["雨"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "電車",
+            "reading": "でんしゃ",
+            "meaning": "Train"
+        },
+            {
+                "word": "電話",
+                "reading": "でんわ",
+                "meaning": "Telephone"
+            }]
+    },
+    {
+        "id": "52",
+        "character": "車",
+        "meaning": "Car, Vehicle",
+        "onyomi": ["シャ"],
+        "kunyomi": ["くるま"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["車"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "車",
+            "reading": "くるま",
+            "meaning": "Car"
+        },
+            {
+                "word": "電車",
+                "reading": "でんしゃ",
+                "meaning": "Train"
+            }]
+    },
+    {
+        "id": "53",
+        "character": "駅",
+        "meaning": "Station",
+        "onyomi": ["エキ"],
+        "kunyomi": [],
+        "strokes": 14,
+        "jlptLevel": "N5",
+        "radicals": ["馬"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "駅",
+            "reading": "えき",
+            "meaning": "Station"
+        },
+            {
+                "word": "駅前",
+                "reading": "えきまえ",
+                "meaning": "In front of the station"
+            }]
+    },
+    {
+        "id": "54",
+        "character": "学",
+        "meaning": "Study, Learn",
+        "onyomi": ["ガク"],
+        "kunyomi": ["まな"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["子"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "学生",
+            "reading": "がくせい",
+            "meaning": "Student"
+        },
+            {
+                "word": "大学",
+                "reading": "だいがく",
+                "meaning": "University"
+            }]
+    },
+    {
+        "id": "55",
+        "character": "校",
+        "meaning": "School",
+        "onyomi": ["コウ"],
+        "kunyomi": [],
+        "strokes": 10,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "学校",
+            "reading": "がっこう",
+            "meaning": "School"
+        },
+            {
+                "word": "高校",
+                "reading": "こうこう",
+                "meaning": "High school"
+            }]
+    },
+    {
+        "id": "56",
+        "character": "生",
+        "meaning": "Life, Birth, Student",
+        "onyomi": ["セイ"],
+        "kunyomi": ["い",
+            "う"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["生"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "学生",
+            "reading": "がくせい",
+            "meaning": "Student"
+        },
+            {
+                "word": "先生",
+                "reading": "せんせい",
+                "meaning": "Teacher"
+            }]
+    },
+    {
+        "id": "57",
+        "character": "先",
+        "meaning": "Previous, Ahead",
+        "onyomi": ["セン"],
+        "kunyomi": ["さき"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["儿"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "先生",
+            "reading": "せんせい",
+            "meaning": "Teacher"
+        },
+            {
+                "word": "先週",
+                "reading": "せんしゅう",
+                "meaning": "Last week"
+            }]
+    },
+    {
+        "id": "58",
+        "character": "名",
+        "meaning": "Name",
+        "onyomi": ["メイ"],
+        "kunyomi": ["な"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["口",
+            "夕"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "名前",
+            "reading": "なまえ",
+            "meaning": "Name"
+        },
+            {
+                "word": "有名",
+                "reading": "ゆうめい",
+                "meaning": "Famous"
+            }]
+    },
+    {
+        "id": "59",
+        "character": "年",
+        "meaning": "Year",
+        "onyomi": ["ネン"],
+        "kunyomi": ["とし"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["干"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "今年",
+            "reading": "ことし",
+            "meaning": "This year"
+        },
+            {
+                "word": "来年",
+                "reading": "らいねん",
+                "meaning": "Next year"
+            }]
+    },
+    {
+        "id": "60",
+        "character": "時",
+        "meaning": "Time, Hour",
+        "onyomi": ["ジ"],
+        "kunyomi": ["とき"],
+        "strokes": 10,
+        "jlptLevel": "N5",
+        "radicals": ["日",
+            "寺"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "時間",
+            "reading": "じかん",
+            "meaning": "Time"
+        },
+            {
+                "word": "三時",
+                "reading": "さんじ",
+                "meaning": "Three o’clock"
+            }]
+    },
+    {
+        "id": "61",
+        "character": "分",
+        "meaning": "Minute, Divide",
+        "onyomi": ["フン",
+            "ブン"],
+        "kunyomi": ["わ"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["刀"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "五分",
+            "reading": "ごふん",
+            "meaning": "Five minutes"
+        },
+            {
+                "word": "十分",
+                "reading": "じゅっぷん",
+                "meaning": "Enough"
+            }]
+    },
+    {
+        "id": "62",
+        "character": "間",
+        "meaning": "Interval, Between",
+        "onyomi": ["カン"],
+        "kunyomi": ["あいだ"],
+        "strokes": 12,
+        "jlptLevel": "N5",
+        "radicals": ["門",
+            "日"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "時間",
+            "reading": "じかん",
+            "meaning": "Time"
+        },
+            {
+                "word": "間",
+                "reading": "あいだ",
+                "meaning": "Between"
+            }]
+    },
+    {
+        "id": "63",
+        "character": "今",
+        "meaning": "Now",
+        "onyomi": ["コン"],
+        "kunyomi": ["いま"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["人"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "今",
+            "reading": "いま",
+            "meaning": "Now"
+        },
+            {
+                "word": "今日",
+                "reading": "きょう",
+                "meaning": "Today"
+            }]
+    },
+    {
+        "id": "64",
+        "character": "週",
+        "meaning": "Week",
+        "onyomi": ["シュウ"],
+        "kunyomi": [],
+        "strokes": 11,
+        "jlptLevel": "N5",
+        "radicals": ["辵"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "今週",
+            "reading": "こんしゅう",
+            "meaning": "This week"
+        },
+            {
+                "word": "来週",
+                "reading": "らいしゅう",
+                "meaning": "Next week"
+            }]
+    },
+    {
+        "id": "65",
+        "character": "毎",
+        "meaning": "Every",
+        "onyomi": ["マイ"],
+        "kunyomi": [],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["母"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "毎日",
+            "reading": "まいにち",
+            "meaning": "Every day"
+        },
+            {
+                "word": "毎週",
+                "reading": "まいしゅう",
+                "meaning": "Every week"
+            }]
+    },
+    {
+        "id": "66",
+        "character": "半",
+        "meaning": "Half",
+        "onyomi": ["ハン"],
+        "kunyomi": ["なか"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["十"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "半年",
+            "reading": "はんとし",
+            "meaning": "Half year"
+        },
+            {
+                "word": "半分",
+                "reading": "はんぶん",
+                "meaning": "Half"
+            }]
+    },
+    {
+        "id": "67",
+        "character": "午",
+        "meaning": "Noon",
+        "onyomi": ["ゴ"],
+        "kunyomi": [],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["十"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "午後",
+            "reading": "ごご",
+            "meaning": "PM, afternoon"
+        },
+            {
+                "word": "午前",
+                "reading": "ごぜん",
+                "meaning": "AM, morning"
+            }]
+    },
+    {
+        "id": "68",
+        "character": "前",
+        "meaning": "Before, Front",
+        "onyomi": ["ゼン"],
+        "kunyomi": ["まえ"],
+        "strokes": 9,
+        "jlptLevel": "N5",
+        "radicals": ["刂"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "前",
+            "reading": "まえ",
+            "meaning": "Front"
+        },
+            {
+                "word": "名前",
+                "reading": "なまえ",
+                "meaning": "Name"
+            }]
+    },
+    {
+        "id": "69",
+        "character": "後",
+        "meaning": "After, Behind",
+        "onyomi": ["ゴ"],
+        "kunyomi": ["あと",
+            "うし"],
+        "strokes": 9,
+        "jlptLevel": "N5",
+        "radicals": ["彳"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "後",
+            "reading": "あと",
+            "meaning": "After"
+        },
+            {
+                "word": "午後",
+                "reading": "ごご",
+                "meaning": "Afternoon"
+            }]
+    },
+    {
+        "id": "70",
+        "character": "東",
+        "meaning": "East",
+        "onyomi": ["トウ"],
+        "kunyomi": ["ひがし"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "東京",
+            "reading": "とうきょう",
+            "meaning": "Tokyo"
+        },
+            {
+                "word": "東",
+                "reading": "ひがし",
+                "meaning": "East"
+            }]
+    },
+    {
+        "id": "71",
+        "character": "西",
+        "meaning": "West",
+        "onyomi": ["セイ"],
+        "kunyomi": ["にし"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["西"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "西",
+            "reading": "にし",
+            "meaning": "West"
+        },
+            {
+                "word": "西口",
+                "reading": "にしぐち",
+                "meaning": "West exit"
+            }]
+    },
+    {
+        "id": "72",
+        "character": "南",
+        "meaning": "South",
+        "onyomi": ["ナン"],
+        "kunyomi": ["みなみ"],
+        "strokes": 9,
+        "jlptLevel": "N5",
+        "radicals": ["十"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "南",
+            "reading": "みなみ",
+            "meaning": "South"
+        },
+            {
+                "word": "南口",
+                "reading": "みなみぐち",
+                "meaning": "South exit"
+            }]
+    },
+    {
+        "id": "73",
+        "character": "北",
+        "meaning": "North",
+        "onyomi": ["ホク"],
+        "kunyomi": ["きた"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["匕"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "北",
+            "reading": "きた",
+            "meaning": "North"
+        },
+            {
+                "word": "北口",
+                "reading": "きたぐち",
+                "meaning": "North exit"
+            }]
+    },
+    {
+  "id": "74",
+  "character": "耳",
+  "meaning": "Ear",
+  "onyomi": ["ジ"],
+  "kunyomi": ["みみ"],
+  "strokes": 6,
+  "jlptLevel": "N5",
+  "radicals": ["耳"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "耳",
+      "reading": "みみ",
+      "meaning": "Ear"
+    },
+    {
+      "word": "耳鳴り",
+      "reading": "みみなり",
+      "meaning": "Ringing in the ears"
+    }
+  ]
+},
+    {
+  "id": "75",
+  "character": "足",
+  "meaning": "Foot, Leg",
+  "onyomi": ["ソク"],
+  "kunyomi": ["あし", "た.りる", "た.す"],
+  "strokes": 7,
+  "jlptLevel": "N5",
+  "radicals": ["足"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "足",
+      "reading": "あし",
+      "meaning": "Foot, leg"
+    },
+    {
+      "word": "足りる",
+      "reading": "たりる",
+      "meaning": "To be enough"
+    }
+  ]
+},
+    {
+        "id": "76",
+        "character": "父",
+        "meaning": "Father",
+        "onyomi": ["フ"],
+        "kunyomi": ["ちち"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["父"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "父",
+            "reading": "ちち",
+            "meaning": "Father"
+        },
+            {
+                "word": "お父さん",
+                "reading": "おとうさん",
+                "meaning": "Father (polite)"
+            }]
+    },
+    {
+        "id": "77",
+        "character": "母",
+        "meaning": "Mother",
+        "onyomi": ["ボ"],
+        "kunyomi": ["はは"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["母"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "母",
+            "reading": "はは",
+            "meaning": "Mother"
+        },
+            {
+                "word": "お母さん",
+                "reading": "おかあさん",
+                "meaning": "Mother (polite)"
+            }]
+    },
+    {
+        "id": "78",
+        "character": "兄",
+        "meaning": "Older brother",
+        "onyomi": ["ケイ",
+            "キョウ"],
+        "kunyomi": ["あに"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["儿"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "兄",
+            "reading": "あに",
+            "meaning": "Older brother"
+        },
+            {
+                "word": "お兄さん",
+                "reading": "おにいさん",
+                "meaning": "Older brother (polite)"
+            }]
+    },
+    {
+        "id": "79",
+        "character": "弟",
+        "meaning": "Younger brother",
+        "onyomi": ["テイ",
+            "ダイ"],
+        "kunyomi": ["おとうと"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["弓",
+            "又"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "弟",
+            "reading": "おとうと",
+            "meaning": "Younger brother"
+        },
+            {
+                "word": "弟さん",
+                "reading": "おとうとさん",
+                "meaning": "Younger brother (polite)"
+            }]
+    },
+    {
+        "id": "80",
+        "character": "妹",
+        "meaning": "Younger sister",
+        "onyomi": ["マイ"],
+        "kunyomi": ["いもうと"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["女",
+            "未"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "妹",
+            "reading": "いもうと",
+            "meaning": "Younger sister"
+        },
+            {
+                "word": "妹さん",
+                "reading": "いもうとさん",
+                "meaning": "Younger sister (polite)"
+            }]
+    },
+    {
+        "id": "81",
+        "character": "姉",
+        "meaning": "Older sister",
+        "onyomi": ["シ"],
+        "kunyomi": ["あね"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["女"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "姉",
+            "reading": "あね",
+            "meaning": "Older sister"
+        },
+            {
+                "word": "お姉さん",
+                "reading": "おねえさん",
+                "meaning": "Older sister (polite)"
+            }]
+    },
+    {
+  "id": "82",
+  "character": "聞",
+  "meaning": "Hear, Listen",
+  "onyomi": ["ブン", "モン"],
+  "kunyomi": ["き.く"],
+  "strokes": 14,
+  "jlptLevel": "N5",
+  "radicals": ["耳", "門"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "聞く",
+      "reading": "きく",
+      "meaning": "To hear, to listen"
+    },
+    {
+      "word": "新聞",
+      "reading": "しんぶん",
+      "meaning": "Newspaper"
+    }
+  ]
+},
+{
+  "id": "83",
+  "character": "話",
+  "meaning": "Talk, Speak",
+  "onyomi": ["ワ"],
+  "kunyomi": ["はな.す", "はなし"],
+  "strokes": 13,
+  "jlptLevel": "N5",
+  "radicals": ["言", "舌"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "話す",
+      "reading": "はなす",
+      "meaning": "To speak"
+    },
+    {
+      "word": "電話",
+      "reading": "でんわ",
+      "meaning": "Telephone"
+    }
+  ]
+},
+{
+  "id": "84",
+  "character": "読",
+  "meaning": "Read",
+  "onyomi": ["ドク", "トク", "トウ"],
+  "kunyomi": ["よ.む"],
+  "strokes": 14,
+  "jlptLevel": "N5",
+  "radicals": ["言", "売"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "読む",
+      "reading": "よむ",
+      "meaning": "To read"
+    },
+    {
+      "word": "読書",
+      "reading": "どくしょ",
+      "meaning": "Reading books"
+    }
+  ]
+},
+{
+  "id": "85",
+  "character": "書",
+  "meaning": "Write",
+  "onyomi": ["ショ"],
+  "kunyomi": ["か.く"],
+  "strokes": 10,
+  "jlptLevel": "N5",
+  "radicals": ["聿"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "書く",
+      "reading": "かく",
+      "meaning": "To write"
+    },
+    {
+      "word": "図書館",
+      "reading": "としょかん",
+      "meaning": "Library"
+    }
+  ]
+},
+{
+  "id": "86",
+  "character": "買",
+  "meaning": "Buy",
+  "onyomi": ["バイ"],
+  "kunyomi": ["か.う"],
+  "strokes": 12,
+  "jlptLevel": "N5",
+  "radicals": ["貝", "亠"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "買う",
+      "reading": "かう",
+      "meaning": "To buy"
+    },
+    {
+      "word": "買い物",
+      "reading": "かいもの",
+      "meaning": "Shopping"
+    }
+  ]
+},
+{
+  "id": "87",
+  "character": "売",
+  "meaning": "Sell",
+  "onyomi": ["バイ"],
+  "kunyomi": ["う.る", "う.れる"],
+  "strokes": 7,
+  "jlptLevel": "N5",
+  "radicals": ["士", "口"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "売る",
+      "reading": "うる",
+      "meaning": "To sell"
+    },
+    {
+      "word": "販売",
+      "reading": "はんばい",
+      "meaning": "Sale"
+    }
+  ]
+},
+
+    {
+        "id": "88",
+        "character": "犬",
+        "meaning": "Dog",
+        "onyomi": ["ケン"],
+        "kunyomi": ["いぬ"],
+        "strokes": 4,
+        "jlptLevel": "N5",
+        "radicals": ["犬"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "犬",
+            "reading": "いぬ",
+            "meaning": "Dog"
+        },
+            {
+                "word": "子犬",
+                "reading": "こいぬ",
+                "meaning": "Puppy"
+            }]
+    },
+    {
+        "id": "89",
+        "character": "猫",
+        "meaning": "Cat",
+        "onyomi": ["ビョウ"],
+        "kunyomi": ["ねこ"],
+        "strokes": 11,
+        "jlptLevel": "N5",
+        "radicals": ["犬",
+            "苗"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "猫",
+            "reading": "ねこ",
+            "meaning": "Cat"
+        },
+            {
+                "word": "子猫",
+                "reading": "こねこ",
+                "meaning": "Kitten"
+            }]
+    },
+    {
+        "id": "90",
+        "character": "鳥",
+        "meaning": "Bird",
+        "onyomi": ["チョウ"],
+        "kunyomi": ["とり"],
+        "strokes": 11,
+        "jlptLevel": "N5",
+        "radicals": ["鳥"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "鳥",
+            "reading": "とり",
+            "meaning": "Bird"
+        },
+            {
+                "word": "小鳥",
+                "reading": "ことり",
+                "meaning": "Small bird"
+            }]
+    },
+    {
+        "id": "91",
+        "character": "魚",
+        "meaning": "Fish",
+        "onyomi": ["ギョ"],
+        "kunyomi": ["さかな"],
+        "strokes": 11,
+        "jlptLevel": "N5",
+        "radicals": ["魚"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "魚",
+            "reading": "さかな",
+            "meaning": "Fish"
+        },
+            {
+                "word": "金魚",
+                "reading": "きんぎょ",
+                "meaning": "Goldfish"
+            }]
+    },
+    {
+  "id": "92",
+  "character": "会",
+  "meaning": "Meet",
+  "onyomi": ["カイ", "エ"],
+  "kunyomi": ["あ.う"],
+  "strokes": 6,
+  "jlptLevel": "N5",
+  "radicals": ["人", "云"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "会う",
+      "reading": "あう",
+      "meaning": "To meet"
+    },
+    {
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "Company"
+    }
+  ]
+},
+    {
+        "id": "93",
+        "character": "空",
+        "meaning": "Sky, Empty",
+        "onyomi": ["クウ"],
+        "kunyomi": ["そら",
+            "あ"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["穴"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "空",
+            "reading": "そら",
+            "meaning": "Sky"
+        },
+            {
+                "word": "空港",
+                "reading": "くうこう",
+                "meaning": "Airport"
+            }]
+    },
+    {
+        "id": "94",
+        "character": "山",
+        "meaning": "Mountain",
+        "onyomi": ["サン",
+            "セン"],
+        "kunyomi": ["やま"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["山"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "山",
+            "reading": "やま",
+            "meaning": "Mountain"
+        },
+            {
+                "word": "富士山",
+                "reading": "ふじさん",
+                "meaning": "Mount Fuji"
+            }]
+    },
+    {
+        "id": "95",
+        "character": "川",
+        "meaning": "River",
+        "onyomi": ["セン"],
+        "kunyomi": ["かわ"],
+        "strokes": 3,
+        "jlptLevel": "N5",
+        "radicals": ["川"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "川",
+            "reading": "かわ",
+            "meaning": "River"
+        },
+            {
+                "word": "天川",
+                "reading": "あまがわ",
+                "meaning": "Amagawa (river name)"
+            }]
+    },
+    {
+        "id": "96",
+        "character": "森",
+        "meaning": "Forest",
+        "onyomi": ["シン"],
+        "kunyomi": ["もり"],
+        "strokes": 12,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "森",
+            "reading": "もり",
+            "meaning": "Forest"
+        },
+            {
+                "word": "森林",
+                "reading": "しんりん",
+                "meaning": "Woods, forest"
+            }]
+    },
+    {
+        "id": "97",
+        "character": "林",
+        "meaning": "Woods, Grove",
+        "onyomi": ["リン"],
+        "kunyomi": ["はやし"],
+        "strokes": 8,
+        "jlptLevel": "N5",
+        "radicals": ["木"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "林",
+            "reading": "はやし",
+            "meaning": "Woods"
+        },
+            {
+                "word": "森林",
+                "reading": "しんりん",
+                "meaning": "Forest"
+            }]
+    },
+    {
+        "id": "98",
+        "character": "石",
+        "meaning": "Stone",
+        "onyomi": ["セキ",
+            "シャク"],
+        "kunyomi": ["いし"],
+        "strokes": 5,
+        "jlptLevel": "N5",
+        "radicals": ["石"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "石",
+            "reading": "いし",
+            "meaning": "Stone"
+        },
+            {
+                "word": "石油",
+                "reading": "せきゆ",
+                "meaning": "Petroleum"
+            }]
+    },
+
+
+
+    {
+        "id": "99",
+        "character": "竹",
+        "meaning": "Bamboo",
+        "onyomi": ["チク"],
+        "kunyomi": ["たけ"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["竹"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "竹",
+            "reading": "たけ",
+            "meaning": "Bamboo"
+        },
+            {
+                "word": "竹林",
+                "reading": "ちくりん",
+                "meaning": "Bamboo grove"
+            }]
+    },
+    {
+        "id": "100",
+        "character": "糸",
+        "meaning": "Thread, String",
+        "onyomi": ["シ"],
+        "kunyomi": ["いと"],
+        "strokes": 6,
+        "jlptLevel": "N5",
+        "radicals": ["糸"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "糸",
+            "reading": "いと",
+            "meaning": "Thread"
+        },
+            {
+                "word": "絹糸",
+                "reading": "けんし",
+                "meaning": "Silk thread"
+            }]
+    },
+    {
+        "id": "101",
+        "character": "貝",
+        "meaning": "Shellfish, Shell",
+        "onyomi": ["バイ"],
+        "kunyomi": ["かい"],
+        "strokes": 7,
+        "jlptLevel": "N5",
+        "radicals": ["貝"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "貝",
+            "reading": "かい",
+            "meaning": "Shellfish"
+        },
+            {
+                "word": "貝殻",
+                "reading": "かいがら",
+                "meaning": "Seashell"
+            }]
+    },
+    {
+  "id": "102",
+  "character": "立",
+  "meaning": "Stand",
+  "onyomi": ["リツ", "リュウ"],
+  "kunyomi": ["た.つ", "た.てる"],
+  "strokes": 5,
+  "jlptLevel": "N5",
+  "radicals": ["立"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "立つ",
+      "reading": "たつ",
+      "meaning": "To stand"
+    },
+    {
+      "word": "立派",
+      "reading": "りっぱ",
+      "meaning": "Splendid, fine"
+    }
+  ]
+},
+{
+  "id": "103",
+  "character": "出",
+  "meaning": "Exit, Go out",
+  "onyomi": ["シュツ", "スイ"],
+  "kunyomi": ["で.る", "だ.す"],
+  "strokes": 5,
+  "jlptLevel": "N5",
+  "radicals": ["凵", "山"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "出る",
+      "reading": "でる",
+      "meaning": "To exit, to go out"
+    },
+    {
+      "word": "出口",
+      "reading": "でぐち",
+      "meaning": "Exit"
+    }
+  ]
+},
+    {
+        "id": "104",
+        "character": "銀",
+        "meaning": "Silver",
+        "onyomi": ["ギン"],
+        "kunyomi": [],
+        "strokes": 14,
+        "jlptLevel": "N5",
+        "radicals": ["金"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "銀",
+            "reading": "ぎん",
+            "meaning": "Silver"
+        },
+            {
+                "word": "銀行",
+                "reading": "ぎんこう",
+                "meaning": "Bank"
+            }]
+    },
+    {
+  "id": "105",
+  "character": "入",
+  "meaning": "Enter, Go in",
+  "onyomi": ["ニュウ"],
+  "kunyomi": ["い.る", "はい.る"],
+  "strokes": 2,
+  "jlptLevel": "N5",
+  "radicals": ["入"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "入る",
+      "reading": "はいる",
+      "meaning": "To enter"
+    },
+    {
+      "word": "入口",
+      "reading": "いりぐち",
+      "meaning": "Entrance"
+    }
+  ]
+},
+{
+  "id": "106",
+  "character": "町",
+  "meaning": "Town",
+  "onyomi": ["チョウ"],
+  "kunyomi": ["まち"],
+  "strokes": 7,
+  "jlptLevel": "N5",
+  "radicals": ["田", "丁"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "町",
+      "reading": "まち",
+      "meaning": "Town"
+    },
+    {
+      "word": "町内",
+      "reading": "ちょうない",
+      "meaning": "Neighborhood"
+    }
+  ]
+},
+    {
+  "id": "107",
+  "character": "店",
+  "meaning": "Shop, Store",
+  "onyomi": ["テン"],
+  "kunyomi": ["みせ"],
+  "strokes": 8,
+  "jlptLevel": "N5",
+  "radicals": ["广", "占"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "店",
+      "reading": "みせ",
+      "meaning": "Shop, store"
+    },
+    {
+      "word": "本店",
+      "reading": "ほんてん",
+      "meaning": "Main store"
+    }
+  ]
+},
+{
+  "id": "108",
+  "character": "社",
+  "meaning": "Company, Shrine",
+  "onyomi": ["シャ"],
+  "kunyomi": [],
+  "strokes": 7,
+  "jlptLevel": "N5",
+  "radicals": ["示", "土"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "Company"
+    },
+    {
+      "word": "神社",
+      "reading": "じんじゃ",
+      "meaning": "Shinto shrine"
+    }
+  ]
+},
+
+    {
+        "id": "109",
+        "character": "海",
+        "meaning": "Sea, Ocean",
+        "onyomi": ["カイ"],
+        "kunyomi": ["うみ"],
+        "strokes": 9,
+        "jlptLevel": "N5",
+        "radicals": ["水"],
+        "status": "new",
+        "reviewCount": 0,
+        "isBookmarked": false,
+        "examples": [{
+            "word": "海",
+            "reading": "うみ",
+            "meaning": "Sea"
+        },
+            {
+                "word": "海外",
+                "reading": "かいがい",
+                "meaning": "Overseas"
+            }]
+    },
+    {
+  "id": "110",
+  "character": "家",
+  "meaning": "House, Home",
+  "onyomi": ["カ", "ケ"],
+  "kunyomi": ["いえ", "や"],
+  "strokes": 10,
+  "jlptLevel": "N5",
+  "radicals": ["宀", "豕"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "家",
+      "reading": "いえ",
+      "meaning": "House"
+    },
+    {
+      "word": "大家族",
+      "reading": "だいかぞく",
+      "meaning": "Large family"
+    }
+  ]
+},
+{
+  "id": "111",
+  "character": "百",
+  "meaning": "Hundred",
+  "onyomi": ["ヒャク"],
+  "kunyomi": [],
+  "strokes": 6,
+  "jlptLevel": "N5",
+  "radicals": ["白", "一"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "百",
+      "reading": "ひゃく",
+      "meaning": "Hundred"
+    },
+    {
+      "word": "百円",
+      "reading": "ひゃくえん",
+      "meaning": "100 yen"
+    }
+  ]
+},
+    {
+  "id": "112",
+  "character": "万",
+  "meaning": "Ten thousand",
+  "onyomi": ["マン", "バン"],
+  "kunyomi": [],
+  "strokes": 3,
+  "jlptLevel": "N5",
+  "radicals": ["一", "丿"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "一万",
+      "reading": "いちまん",
+      "meaning": "Ten thousand"
+    },
+    {
+      "word": "万歳",
+      "reading": "ばんざい",
+      "meaning": "Banzai! Hooray!"
+    }
+  ]
+},
+    {
+  "id": "113",
+  "character": "千",
+  "meaning": "Thousand",
+  "onyomi": ["セン"],
+  "kunyomi": [],
+  "strokes": 3,
+  "jlptLevel": "N5",
+  "radicals": ["十", "小"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "千",
+      "reading": "せん",
+      "meaning": "Thousand"
+    },
+    {
+      "word": "千円",
+      "reading": "せんえん",
+      "meaning": "1000 yen"
+    }
+  ]
+},
+
+{
+  "id": "114",
+  "character": "円",
+  "meaning": "Yen, Circle",
+  "onyomi": ["エン"],
+  "kunyomi": ["まる"],
+  "strokes": 4,
+  "jlptLevel": "N5",
+  "radicals": ["口", "丶"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "円",
+      "reading": "えん",
+      "meaning": "Yen, Circle"
+    },
+    {
+      "word": "百円",
+      "reading": "ひゃくえん",
+      "meaning": "100 yen"
+    }
+  ]
+},
+{
+  "id": "115",
+  "character": "語",
+  "meaning": "Language, Word",
+  "onyomi": ["ゴ"],
+  "kunyomi": [],
+  "strokes": 14,
+  "jlptLevel": "N5",
+  "radicals": ["言", "五"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "日本語",
+      "reading": "にほんご",
+      "meaning": "Japanese language"
+    },
+    {
+      "word": "外国語",
+      "reading": "がいこくご",
+      "meaning": "Foreign language"
+    }
+  ]
+},
+{
+  "id": "116",
+  "character": "紙",
+  "meaning": "Paper",
+  "onyomi": ["シ"],
+  "kunyomi": [],
+  "strokes": 10,
+  "jlptLevel": "N5",
+  "radicals": ["糸", "氏"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "紙",
+      "reading": "かみ",
+      "meaning": "Paper"
+    },
+    {
+      "word": "新聞紙",
+      "reading": "しんぶんし",
+      "meaning": "Newspaper"
+    }
+  ]
+},
+{
+  "id": "117",
+  "character": "服",
+  "meaning": "Clothes",
+  "onyomi": ["フク"],
+  "kunyomi": [],
+  "strokes": 9,
+  "jlptLevel": "N5",
+  "radicals": ["月", "卩"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "服",
+      "reading": "ふく",
+      "meaning": "Clothes"
+    },
+    {
+      "word": "制服",
+      "reading": "せいふく",
+      "meaning": "Uniform"
+    }
+  ]
+},
+{
+  "id": "118",
+  "character": "名",
+  "meaning": "Name",
+  "onyomi": ["メイ", "ミョウ"],
+  "kunyomi": ["な"],
+  "strokes": 6,
+  "jlptLevel": "N5",
+  "radicals": ["口", "夕"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "名前",
+      "reading": "なまえ",
+      "meaning": "Name"
+    },
+    {
+      "word": "氏名",
+      "reading": "しめい",
+      "meaning": "Full name"
+    }
+  ]
+},
+{
+  "id": "119",
+  "character": "何",
+  "meaning": "What",
+  "onyomi": ["カ"],
+  "kunyomi": ["なに", "なん"],
+  "strokes": 7,
+  "jlptLevel": "N5",
+  "radicals": ["亻", "可"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "何",
+      "reading": "なに",
+      "meaning": "What"
+    },
+    {
+      "word": "何時",
+      "reading": "なんじ",
+      "meaning": "What time"
+    }
+  ]
+},
+{
+  "id": "120",
+  "character": "私",
+  "meaning": "I, Me",
+  "onyomi": ["シ"],
+  "kunyomi": ["わたし"],
+  "strokes": 7,
+  "jlptLevel": "N5",
+  "radicals": ["禾", "厶"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "私",
+      "reading": "わたし",
+      "meaning": "I, me"
+    },
+    {
+      "word": "私立",
+      "reading": "しりつ",
+      "meaning": "Private (school)"
+    }
+  ]
+},
+{
+  "id": "121",
+  "character": "方",
+  "meaning": "Direction, Way, Method",
+  "onyomi": ["ホウ"],
+  "kunyomi": [],
+  "strokes": 4,
+  "jlptLevel": "N5",
+  "radicals": ["方"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "方法",
+      "reading": "ほうほう",
+      "meaning": "Method, way"
+    },
+    {
+      "word": "味方",
+      "reading": "みかた",
+      "meaning": "Ally, supporter"
+    }
+  ]
+},
+{
+  "id": "122",
+  "character": "好",
+  "meaning": "Like, Fond",
+  "onyomi": ["コウ"],
+  "kunyomi": ["す.く", "この.む"],
+  "strokes": 6,
+  "jlptLevel": "N5",
+  "radicals": ["女", "子"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "好き",
+      "reading": "すき",
+      "meaning": "Like, fond of"
+    },
+    {
+      "word": "好物",
+      "reading": "こうぶつ",
+      "meaning": "Favorite food"
+    }
+  ]
+},
+{
+  "id": "123",
+  "character": "悪",
+  "meaning": "Bad",
+  "onyomi": ["アク", "オ"],
+  "kunyomi": ["わる.い"],
+  "strokes": 11,
+  "jlptLevel": "N5",
+  "radicals": ["心", "亞"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "悪い",
+      "reading": "わるい",
+      "meaning": "Bad"
+    },
+    {
+      "word": "最悪",
+      "reading": "さいあく",
+      "meaning": "The worst"
+    }
+  ]
+},
+{
+  "id": "124",
+  "character": "暑",
+  "meaning": "Hot (weather)",
+  "onyomi": ["ショ"],
+  "kunyomi": ["あつ.い"],
+  "strokes": 12,
+  "jlptLevel": "N5",
+  "radicals": ["日", "者"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "暑い",
+      "reading": "あつい",
+      "meaning": "Hot (weather)"
+    },
+    {
+      "word": "真夏日",
+      "reading": "まなつび",
+      "meaning": "A hot summer day"
+    }
+  ]
+},
+{
+  "id": "125",
+  "character": "寒",
+  "meaning": "Cold (weather)",
+  "onyomi": ["カン"],
+  "kunyomi": ["さむ.い"],
+  "strokes": 12,
+  "jlptLevel": "N5",
+  "radicals": ["宀", "冫", "三"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "寒い",
+      "reading": "さむい",
+      "meaning": "Cold (weather)"
+    },
+    {
+      "word": "寒波",
+      "reading": "かんぱ",
+      "meaning": "Cold wave"
+    }
+  ]
+},
+{
+  "id": "126",
+  "character": "道",
+  "meaning": "Road, Way",
+  "onyomi": ["ドウ", "トウ"],
+  "kunyomi": ["みち"],
+  "strokes": 12,
+  "jlptLevel": "N5",
+  "radicals": ["辶", "首"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "道",
+      "reading": "みち",
+      "meaning": "Road, way"
+    },
+    {
+      "word": "道路",
+      "reading": "どうろ",
+      "meaning": "Road, street"
+    }
+  ]
+},
+{
+  "id": "127",
+  "character": "働",
+  "meaning": "Work",
+  "onyomi": ["ドウ"],
+  "kunyomi": ["はたら.く"],
+  "strokes": 13,
+  "jlptLevel": "N5",
+  "radicals": ["亻", "重"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "働く",
+      "reading": "はたらく",
+      "meaning": "To work"
+    },
+    {
+      "word": "労働",
+      "reading": "ろうどう",
+      "meaning": "Labor, work"
+    }
+  ]
+},
+{
+  "id": "128",
+  "character": "止",
+  "meaning": "Stop",
+  "onyomi": ["シ"],
+  "kunyomi": ["と.まる", "と.める"],
+  "strokes": 4,
+  "jlptLevel": "N5",
+  "radicals": ["止"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "止まる",
+      "reading": "とまる",
+      "meaning": "To stop"
+    },
+    {
+      "word": "禁止",
+      "reading": "きんし",
+      "meaning": "Prohibition"
+    }
+  ]
+},
+{
+  "id": "129",
+  "character": "開",
+  "meaning": "Open",
+  "onyomi": ["カイ"],
+  "kunyomi": ["あ.ける", "ひら.く"],
+  "strokes": 12,
+  "jlptLevel": "N5",
+  "radicals": ["門", "開"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "開ける",
+      "reading": "あける",
+      "meaning": "To open"
+    },
+    {
+      "word": "開店",
+      "reading": "かいてん",
+      "meaning": "Opening of a store"
+    }
+  ]
+},
+{
+  "id": "130",
+  "character": "閉",
+  "meaning": "Close",
+  "onyomi": ["ヘイ"],
+  "kunyomi": ["し.める", "と.じる"],
+  "strokes": 11,
+  "jlptLevel": "N5",
+  "radicals": ["門", "才"],
+  "status": "new",
+  "reviewCount": 0,
+  "isBookmarked": false,
+  "examples": [
+    {
+      "word": "閉める",
+      "reading": "しめる",
+      "meaning": "To close"
+    },
+    {
+      "word": "閉店",
+      "reading": "へいてん",
+      "meaning": "Closing of a store"
+    }
+    ]
+}
+]
+
