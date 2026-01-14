@@ -1,4 +1,5 @@
 // pages/Home.tsx
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   BookOpen, 
@@ -176,13 +177,24 @@ const Home = () => {
     }
   ];
 
-  const quickActions = [
+  // Add a type for quickActions to include 'badge'
+type QuickAction = {
+  title: string;
+  description: string;
+  action: () => void | Promise<void>;
+  color: string;
+  icon: React.ElementType;
+  badge?: string;
+};
+
+  const quickActions: QuickAction[] = [
     {
       title: "Kana Quiz",
       description: "Test your knowledge with customizable quiz",
       action: () => navigate("/kana-quiz"),
       color: "from-purple-500 to-pink-500",
       icon: Target
+      // badge: "NEW", // Example: add badge if needed
     },
     {
       title: "Continue Learning",
@@ -330,7 +342,8 @@ const Home = () => {
                 </span>
               )}
               <div className="flex items-center justify-between mb-4">
-                <action.icon className="w-8 h-8" />
+                {/* FIX: instantiate icon as a component */}
+                {React.createElement(action.icon, { className: "w-8 h-8" })}
                 <ArrowRight className="w-5 h-5 opacity-75" />
               </div>
               <h3 className="text-xl font-bold mb-2">{action.title}</h3>
