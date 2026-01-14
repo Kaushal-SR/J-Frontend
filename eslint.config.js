@@ -14,6 +14,8 @@ export default defineConfig([
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      'plugin:react/recommended',
+      'plugin:@typescript-eslint/recommended',
     ],
     languageOptions: {
       ecmaVersion: 2020,
