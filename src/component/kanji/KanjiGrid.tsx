@@ -8,7 +8,10 @@ function KanjiExamplesPopover({ kanji, onClose }: { kanji: any; onClose: (e: Rea
   const initialCount = 3;
   const visibleExamples = showAll ? sortedExamples : sortedExamples.slice(0, initialCount);
   return (
-    <div className="absolute left-1/2 top-full mt-2 w-80 -translate-x-1/2 bg-white border border-blue-200 rounded-xl shadow-xl p-4 z-20 animate-fade-in">
+    <div
+      className="fixed left-0 right-0 top-auto bottom-0 mx-auto mb-4 sm:absolute sm:left-1/2 sm:top-full sm:mt-2 sm:w-80 sm:-translate-x-1/2 bg-white border border-blue-200 rounded-xl shadow-xl p-4 z-50"
+      style={{ width: '100vw', maxWidth: '360px', minWidth: '220px', paddingLeft: 'max(env(safe-area-inset-left), 8px)', paddingRight: 'max(env(safe-area-inset-right), 8px)' }}
+    >
       <div className="font-semibold text-blue-700 mb-2 text-center">Example Words</div>
       {visibleExamples.length > 0 ? (
         <div className="space-y-2 mb-3">
@@ -80,7 +83,7 @@ const KanjiGrid: React.FC<KanjiGridProps> = ({ kanjiList }) => {
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
         {kanjiList.map((k) => (
           <div
             key={k.id}
@@ -91,8 +94,8 @@ const KanjiGrid: React.FC<KanjiGridProps> = ({ kanjiList }) => {
             tabIndex={0}
             onBlur={() => setSelectedKanjiId(null)}
           >
-            <div className="text-4xl font-bold mb-2">{k.character}</div>
-            <div className="text-sm text-gray-700 mb-1">{k.meaning}</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">{k.character}</div>
+            <div className="text-xs sm:text-sm text-gray-700 mb-1">{k.meaning}</div>
             <div className="text-xs text-gray-500 mb-1">JLPT: {k.jlptLevel}</div>
             <div className="text-xs text-gray-500 mb-1">Strokes: {k.strokes}</div>
             <div className="text-xs text-gray-500 mb-1">{k.status}</div>
@@ -108,15 +111,7 @@ const KanjiGrid: React.FC<KanjiGridProps> = ({ kanjiList }) => {
           </div>
         ))}
       </div>
-      <style>{`
-        .animate-fade-in {
-          animation: fadeIn 0.2s ease-out;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+      {/* Animation removed as requested */}
     </div>
   );
 };
