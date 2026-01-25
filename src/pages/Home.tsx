@@ -268,10 +268,14 @@ type QuickAction = {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 pt-20 pb-16">
           <div className="text-center">
-            <div className="flex justify-center mb-6">
+            <div className="flex flex-col items-center mb-6 gap-2">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-sm">Kanji and Vocabulary are added !</span>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                <Star className="w-4 h-4" />
+                <span className="text-sm">Use Login To Save Progress!</span>
               </div>
             </div>
             

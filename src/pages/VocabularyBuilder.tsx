@@ -21,11 +21,19 @@ import {
   Sparkles
 } from 'lucide-react';
 
+
 import VocabsN5 from '../assets/Vocabs_N5.json';
 import VocabsN4 from '../assets/Vocabs_N4.json';
 import VocabsN3 from '../assets/Vocabs_N3.json';
 import VocabsN2 from '../assets/Vocabs_N2.json';
 import VocabsN1 from '../assets/Vocabs_N1.json';
+
+import {
+  markVocabLearned,
+  markVocabNotLearned,
+  setVocabBookmark,
+  getVocabProgress
+} from '../service/userProgress.service';
 
 type Difficulty = 'beginner' | 'intermediate' | 'advanced' | 'all';
 type JLPTLevel = 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
@@ -142,25 +150,51 @@ const VocabularyBuilder = () => {
 
   const jlptLevels: JLPTLevel[] = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
+
   useEffect(() => {
-    loadVocabulary();
+    fetchAndMergeUserProgress();
   }, []);
+
+  // Fetch user progress from backend and merge with local vocab data
+  const fetchAndMergeUserProgress = async () => {
+    setIsLoading(true);
+    try {
+      const res = await getVocabProgress();
+      // Only consider VOCAB progress
+      const progress = Array.isArray(res.data)
+        ? res.data.filter((p: any) => p.itemType === 'VOCAB')
+        : [];
+      // Build a map for quick lookup
+      const progressMap = new Map(progress.map((p: any) => [p.itemId, p]));
+      // Merge progress into vocab data
+      const merged = vocabularyData.map(word => {
+        const p = progressMap.get(word.id);
+        return {
+          ...word,
+          isLearned: p ? !!p.learned : false,
+          isBookmarked: p ? !!p.bookmarked : false,
+        };
+      });
+      setWords(merged);
+      updateStats(merged);
+    } catch (e) {
+      // fallback to local only
+      setWords(vocabularyData);
+      updateStats(vocabularyData);
+    }
+    setIsLoading(false);
+  };
 
   const fetchKanaCounts = async () => {
   };
 
-  const loadVocabulary = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setWords(vocabularyData);
-      updateStats();
-      setIsLoading(false);
-    }, 500);
-  };
 
-  const updateStats = () => {
-    const learned = vocabularyData.filter(w => w.isLearned).length;
-    const total = vocabularyData.length;
+  // Remove loadVocabulary, handled by fetchAndMergeUserProgress
+
+
+  const updateStats = (wordsList: VocabularyWord[] = words) => {
+    const learned = wordsList.filter(w => w.isLearned).length;
+    const total = wordsList.length;
     setStats({
       totalLearned: learned,
       totalWords: total,
@@ -211,24 +245,26 @@ const VocabularyBuilder = () => {
     speechSynthesis.speak(utterance);
   };
 
-  const markAsKnown = () => {
+
+  const markAsKnown = async () => {
     if (!currentWord) return;
-    
-    const updatedWords = [...words];
-    const wordIndex = words.findIndex(w => w.id === currentWord.id);
-    
-    updatedWords[wordIndex] = { 
-      ...currentWord,
-      isLearned: true,
-      reviews: currentWord.reviews + 1,
-      streak: currentWord.streak + 1,
-      lastReviewed: new Date(),
-      nextReview: new Date(Date.now() + 24 * 60 * 60 * 1000) // 1 day later
-    };
-    
-    setWords(updatedWords);
-    updateStats();
-    
+    try {
+      await markVocabLearned(currentWord.id);
+      const updatedWords = words.map(w =>
+        w.id === currentWord.id
+          ? {
+              ...w,
+              isLearned: true,
+              reviews: w.reviews + 1,
+              streak: w.streak + 1,
+              lastReviewed: new Date(),
+              nextReview: new Date(Date.now() + 24 * 60 * 60 * 1000),
+            }
+          : w
+      );
+      setWords(updatedWords);
+      updateStats(updatedWords);
+    } catch (e) {}
     // Move to next word
     if (currentWordIndex < filteredWords.length - 1) {
       setCurrentWordIndex(prev => prev + 1);
@@ -238,24 +274,26 @@ const VocabularyBuilder = () => {
     setShowAnswer(false);
   };
 
-  const markAsUnknown = () => {
+
+  const markAsUnknown = async () => {
     if (!currentWord) return;
-    
-    const updatedWords = [...words];
-    const wordIndex = words.findIndex(w => w.id === currentWord.id);
-    
-    updatedWords[wordIndex] = {
-      ...currentWord,
-      isLearned: false,
-      reviews: currentWord.reviews + 1,
-      streak: 0,
-      lastReviewed: new Date(),
-      nextReview: new Date(Date.now() + 1 * 60 * 60 * 1000) // 1 hour later
-    };
-    
-    setWords(updatedWords);
-    updateStats();
-    
+    try {
+      await markVocabNotLearned(currentWord.id);
+      const updatedWords = words.map(w =>
+        w.id === currentWord.id
+          ? {
+              ...w,
+              isLearned: false,
+              reviews: w.reviews + 1,
+              streak: 0,
+              lastReviewed: new Date(),
+              nextReview: new Date(Date.now() + 1 * 60 * 60 * 1000),
+            }
+          : w
+      );
+      setWords(updatedWords);
+      updateStats(updatedWords);
+    } catch (e) {}
     if (currentWordIndex < filteredWords.length - 1) {
       setCurrentWordIndex(prev => prev + 1);
     } else {
@@ -264,13 +302,17 @@ const VocabularyBuilder = () => {
     setShowAnswer(false);
   };
 
-  const toggleBookmark = (wordId: string) => {
-    const updatedWords = words.map(word => 
-      word.id === wordId 
-        ? { ...word, isBookmarked: !word.isBookmarked }
-        : word
-    );
-    setWords(updatedWords);
+
+  const toggleBookmark = async (wordId: string) => {
+    const word = words.find(w => w.id === wordId);
+    if (!word) return;
+    try {
+      await setVocabBookmark(wordId, !word.isBookmarked);
+      const updatedWords = words.map(w =>
+        w.id === wordId ? { ...w, isBookmarked: !w.isBookmarked } : w
+      );
+      setWords(updatedWords);
+    } catch (e) {}
   };
 
   if (isLoading) {
@@ -409,22 +451,23 @@ const VocabularyBuilder = () => {
                 <Bookmark className="w-5 h-5 text-amber-600" />
                 Bookmarked Words
               </h3>
-              <div className="space-y-2">
-                {words.filter(w => w.isBookmarked).slice(0, 5).map((word) => (
-                  <div key={word.id} className="flex items-center justify-between p-3 bg-amber-50 rounded-lg">
-                    <div>
-                      <div className="font-medium">{word.japanese}</div>
-                      <div className="text-sm text-gray-600">{word.english}</div>
+              <div className="space-y-2 max-h-64 overflow-y-auto pr-1 custom-scrollbar">
+                {words.filter(w => w.isBookmarked).length > 0 ? (
+                  words.filter(w => w.isBookmarked).map((word) => (
+                    <div key={word.id} className="flex items-center justify-between p-3 bg-amber-50 rounded-lg">
+                      <div>
+                        <div className="font-medium">{word.japanese}</div>
+                        <div className="text-sm text-gray-600">{word.english}</div>
+                      </div>
+                      <button
+                        onClick={() => toggleBookmark(word.id)}
+                        className="text-amber-600 hover:text-amber-700"
+                      >
+                        <Bookmark className="w-5 h-5 fill-current" />
+                      </button>
                     </div>
-                    <button
-                      onClick={() => toggleBookmark(word.id)}
-                      className="text-amber-600 hover:text-amber-700"
-                    >
-                      <Bookmark className="w-5 h-5 fill-current" />
-                    </button>
-                  </div>
-                ))}
-                {words.filter(w => w.isBookmarked).length === 0 && (
+                  ))
+                ) : (
                   <p className="text-gray-500 text-center py-4">No bookmarked words yet</p>
                 )}
               </div>
@@ -613,6 +656,16 @@ const VocabularyBuilder = () => {
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #fbbf24;
+          border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #fff7ed;
         }
       `}</style>
     </div>

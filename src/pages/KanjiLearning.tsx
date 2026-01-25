@@ -227,8 +227,9 @@ const KanjiLearning = () => {
     // TODO: Implement next kanji navigation
   };
 
+  // Toggle random order for practice mode
   const shufflePracticeKanji = () => {
-    // TODO: Implement kanji shuffling logic
+    setRandomOrder((prev) => !prev);
   };
 
   const renderWritingGuide = () => {
