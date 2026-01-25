@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { login } from "../service/auth.service";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,14 +9,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { login } = useAuth();
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      await login({ email, password });
+      await login(email, password);
       toast.success("Login successful 🎉");
-      navigate("/"); // go home or admin later
+      navigate("/");
     } catch (err: any) {
       toast.error(
         err.response?.data?.message || "Login failed"

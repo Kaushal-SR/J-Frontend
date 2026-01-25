@@ -1,6 +1,7 @@
 // pages/KatakanaPage.tsx
 import { useEffect, useState } from "react";
-import { type Katakana, getAllKatakana, markKatakanaAsRead } from "../../service/katakana.service";
+import { type Katakana, getAllKatakana } from "../../service/katakana.service";
+import { markKatakanaLearned, getLearnedProgress } from "../../service/userProgress.service";
 import { Speaker, Volume2, Lightbulb, Search, Filter, CheckCircle, Bookmark, Loader2, X, Menu, Grid, BookOpen } from "lucide-react";
 
 const KatakanaPage = () => {
@@ -20,6 +21,7 @@ const KatakanaPage = () => {
 
   useEffect(() => {
     fetchKatakana();
+    fetchLearned();
   }, []);
 
   useEffect(() => {
@@ -30,7 +32,6 @@ const KatakanaPage = () => {
     try {
       setIsLoading(true);
       const response = await getAllKatakana();
-      
       // Sort katakana similar to hiragana
       const sortedKatakana = response.data.sort((a, b) => {
         const getCategory = (char: Katakana) => {
@@ -47,26 +48,29 @@ const KatakanaPage = () => {
             return "combinations";
           }
         };
-        
         const categoryOrder = { basic: 1, tenten: 2, maru: 3, combinations: 4 };
         const categoryA = getCategory(a);
         const categoryB = getCategory(b);
-        
         if (categoryOrder[categoryA] !== categoryOrder[categoryB]) {
           return categoryOrder[categoryA] - categoryOrder[categoryB];
         }
         return a.symbol.localeCompare(b.symbol);
       });
-      
       setKatakanaList(sortedKatakana);
-      
-      // Load learned characters from API (isRead: true)
-      const learned = sortedKatakana.filter(char => char.isRead).map(char => char.id);
-      setLearnedChars(learned);
     } catch (error) {
       console.error("Error fetching katakana:", error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchLearned = async () => {
+    try {
+      const response = await getLearnedProgress();
+      const learned = response.data.filter((item: any) => item.itemType === "KATAKANA").map((item: any) => item.itemId);
+      setLearnedChars(learned);
+    } catch (error) {
+      console.error("Error fetching learned progress:", error);
     }
   };
 
@@ -115,27 +119,19 @@ const KatakanaPage = () => {
     try {
       setUpdatingChar(characterId);
       const isCurrentlyLearned = learnedChars.includes(characterId);
-      
-      // Update in API
-      await markKatakanaAsRead(characterId, !isCurrentlyLearned);
-      
-      // Update local state
-      const newLearned = isCurrentlyLearned
-        ? learnedChars.filter((id) => id !== characterId)
-        : [...learnedChars, characterId];
-      
-      setLearnedChars(newLearned);
-      
-      // Update katakanaList with new isRead status
+      if (!isCurrentlyLearned) {
+        await markKatakanaLearned(characterId);
+        setLearnedChars([...learnedChars, characterId]);
+      } else {
+        // Optionally, implement unlearn logic if needed
+        setLearnedChars(learnedChars.filter((id) => id !== characterId));
+      }
       setKatakanaList(prev => prev.map(char => 
         char.id === characterId ? { ...char, isRead: !isCurrentlyLearned } : char
       ));
-      
-      // Update selected char if it's the same
       if (selectedChar?.id === characterId) {
         setSelectedChar(prev => prev ? { ...prev, isRead: !isCurrentlyLearned } : null);
       }
-      
     } catch (error) {
       console.error("Error updating learned status:", error);
       alert("Failed to update learning status. Please try again.");
