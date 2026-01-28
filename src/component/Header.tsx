@@ -40,33 +40,82 @@ const Header = ({ title }: HeaderProps) => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          {title && <span>{title}</span>}
-          <Link to="/" onClick={closeMenu} className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-blue-500 flex items-center justify-center">
-              <span className="text-xl font-bold text-white">日</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-              Nihongo Space
-            </span>
-          </Link>
+        <div className="flex flex-col md:flex-row h-auto md:h-16 items-stretch md:items-center justify-between w-full">
+          <div className="flex flex-row items-center justify-between w-full md:w-auto">
+            {/* Logo */}
+            {title && <span>{title}</span>}
+            <Link to="/" className="flex items-center gap-2">
+              <span className="text-xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+                Nihongo Space
+              </span>
+            </Link>
+            {/* User menu - always top right */}
+            <div className="flex items-center gap-2 ml-auto md:ml-2">
+              {user ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-2 rounded-lg hover:bg-gray-50"
+                  >
+                    <UserCircle className="w-7 h-7 text-gray-600" />
+                    <ChevronDown
+                      className={`w-4 h-4 transition ${dropdownOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-52 bg-white border rounded-xl shadow-lg z-50">
+                      <Link
+                        to="/profile"
+                        onClick={() => setDropdownOpen(false)}
+                        className="block px-4 py-3 text-sm hover:bg-gray-50"
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        to="/progress"
+                        onClick={() => setDropdownOpen(false)}
+                        className="block px-4 py-3 text-sm hover:bg-gray-50"
+                      >
+                        Progress
+                      </Link>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  to="/register"
+                  className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-red-500 to-blue-500 hover:shadow whitespace-nowrap"
+                >
+                  Get Started
+                </Link>
+              )}
+            </div>
+          </div>
+          {/* Nav - always visible, responsive size and spread horizontally, no overflow */}
+          <nav className="flex flex-row items-center justify-between w-full md:w-auto gap-0 md:gap-1 flex-nowrap overflow-hidden max-w-full bg-white mt-1 md:mt-0">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition
+                className={`basis-0 grow shrink min-w-0 text-[11px] sm:text-xs px-0.5 sm:px-2 py-1 rounded font-medium transition text-center whitespace-nowrap overflow-hidden max-w-full flex items-center justify-center
                   ${isActive(item.path)
                     ? "bg-red-50 text-red-600"
                     : "text-gray-700 hover:bg-gray-50 hover:text-red-600"
                   }`}
               >
-                <span className="flex items-center gap-2">
+                <span className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 w-full overflow-hidden">
                   {item.icon}
-                  {item.label}
+                  <span className="truncate w-full">{item.label}</span>
                 </span>
               </Link>
             ))}
@@ -74,128 +123,15 @@ const Header = ({ title }: HeaderProps) => {
             {user?.role === "ADMIN" && (
               <Link
                 to="/admin"
-                className="px-4 py-2 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 flex items-center gap-2"
+                className="basis-0 grow shrink min-w-0 text-[11px] sm:text-xs px-0.5 sm:px-2 py-1 rounded font-medium text-red-600 bg-red-50 hover:bg-red-100 flex items-center justify-center gap-1 text-center whitespace-nowrap overflow-hidden max-w-full"
               >
                 <Shield className="w-4 h-4" />
-                Admin
+                <span className="truncate w-full">Admin</span>
               </Link>
             )}
           </nav>
-
-          {/* Desktop User */}
-          <div className="hidden md:flex items-center gap-4">
-            {user ? (
-              <div className="relative">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50"
-                >
-                  <UserCircle className="w-7 h-7 text-gray-600" />
-                  <ChevronDown
-                    className={`w-4 h-4 transition ${dropdownOpen ? "rotate-180" : ""}`}
-                  />
-                </button>
-
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-52 bg-white border rounded-xl shadow-lg z-50">
-                    <Link
-                      to="/profile"
-                      onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-3 text-sm hover:bg-gray-50"
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      to="/progress"
-                      onClick={() => setDropdownOpen(false)}
-                      className="block px-4 py-3 text-sm hover:bg-gray-50"
-                    >
-                      Progress
-                    </Link>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setDropdownOpen(false);
-                      }}
-                      className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                to="/register"
-                className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-red-500 to-blue-500 hover:shadow"
-              >
-                Get Started
-              </Link>
-            )}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100"
-          >
-            {open ? <X /> : <Menu />}
-          </button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden fixed inset-0 z-40">
-          <div className="absolute inset-0 bg-black/20" onClick={closeMenu} />
-          <div className="absolute right-0 top-0 h-full w-72 bg-white shadow-xl">
-            <div className="p-4 space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={closeMenu}
-                  className={`block px-4 py-3 rounded-lg
-                    ${isActive(item.path)
-                      ? "bg-red-50 text-red-600"
-                      : "text-gray-700 hover:bg-gray-50"
-                    }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-
-              {user ? (
-                <>
-                  <Link to="/profile" onClick={closeMenu} className="block px-4 py-3">
-                    Profile
-                  </Link>
-                  <Link to="/progress" onClick={closeMenu} className="block px-4 py-3">
-                    Progress
-                  </Link>
-                  <button
-                    onClick={() => {
-                      logout();
-                      closeMenu();
-                    }}
-                    className="w-full text-left px-4 py-3 text-red-600"
-                  >
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <Link
-                  to="/register"
-                  onClick={closeMenu}
-                  className="block px-4 py-3 text-center text-white bg-gradient-to-r from-red-500 to-blue-500 rounded-lg"
-                >
-                  Get Started
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
