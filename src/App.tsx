@@ -1,5 +1,6 @@
 // App.tsx
 import { Routes, Route, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 
@@ -42,6 +43,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
+        <Analytics />
         <Routes>
           {/* ---------------- PUBLIC ---------------- */}
           <Route path="/" element={<Home />} />
