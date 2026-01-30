@@ -38,7 +38,7 @@ const Header = ({ title }: HeaderProps) => {
     path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/40 backdrop-blur-lg border-b border-white/40 shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row h-auto md:h-16 items-stretch md:items-center justify-between w-full">
           <div className="flex flex-row items-center justify-between w-full md:w-auto">
@@ -94,7 +94,7 @@ const Header = ({ title }: HeaderProps) => {
               ) : (
                 <Link
                   to="/register"
-                  className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-red-500 to-blue-500 hover:shadow whitespace-nowrap"
+                  className="px-2 sm:px-3 py-1 sm:py-2 rounded-xl text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-red-500 to-blue-500 hover:shadow-lg whitespace-nowrap border border-white/40 backdrop-blur-lg"
                 >
                   Get Started
                 </Link>
@@ -102,15 +102,15 @@ const Header = ({ title }: HeaderProps) => {
             </div>
           </div>
           {/* Nav - always visible, responsive size and spread horizontally, no overflow */}
-          <nav className="flex flex-row items-center justify-between w-full md:w-auto gap-0 md:gap-1 flex-nowrap overflow-hidden max-w-full bg-white mt-1 md:mt-0">
+          <nav className="flex flex-row items-center justify-between w-full md:w-auto gap-0 md:gap-1 flex-nowrap overflow-hidden max-w-full bg-white/0 mt-1 md:mt-0">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`basis-0 grow shrink min-w-0 text-[11px] sm:text-xs px-0.5 sm:px-2 py-1 rounded font-medium transition text-center whitespace-nowrap overflow-hidden max-w-full flex items-center justify-center
+                className={`basis-0 grow shrink min-w-0 text-[11px] sm:text-xs px-0.5 sm:px-2 py-1 rounded-xl font-medium transition text-center whitespace-nowrap overflow-hidden max-w-full flex items-center justify-center
                   ${isActive(item.path)
-                    ? "bg-red-50 text-red-600"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-red-600"
+                    ? "bg-white/60 backdrop-blur-lg border border-white/40 text-red-600 shadow"
+                    : "text-gray-700 hover:bg-white/40 hover:backdrop-blur-lg hover:border hover:border-white/40 hover:text-red-600"
                   }`}
               >
                 <span className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1 w-full overflow-hidden">
@@ -123,7 +123,7 @@ const Header = ({ title }: HeaderProps) => {
             {user?.role === "ADMIN" && (
               <Link
                 to="/admin"
-                className="basis-0 grow shrink min-w-0 text-[11px] sm:text-xs px-0.5 sm:px-2 py-1 rounded font-medium text-red-600 bg-red-50 hover:bg-red-100 flex items-center justify-center gap-1 text-center whitespace-nowrap overflow-hidden max-w-full"
+                className="basis-0 grow shrink min-w-0 text-[11px] sm:text-xs px-0.5 sm:px-2 py-1 rounded-xl font-medium text-red-600 bg-white/60 backdrop-blur-lg border border-white/40 hover:bg-white/80 flex items-center justify-center gap-1 text-center whitespace-nowrap overflow-hidden max-w-full shadow"
               >
                 <Shield className="w-4 h-4" />
                 <span className="truncate w-full">Admin</span>

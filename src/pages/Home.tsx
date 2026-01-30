@@ -296,7 +296,7 @@ type QuickAction = {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-pink-100">
       {/* Hero Section */}
       <div className="relative overflow-hidden text-white">
         {/* Unsplash Japan image as background (rotates every 15 min) */}
@@ -313,8 +313,8 @@ type QuickAction = {
           }}
         />
         {/* Semi-transparent dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-50 z-10 pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-4 pt-20 pb-16" style={{ position: 'relative', zIndex: 20 }}>
+        <div className="absolute inset-0 bg-white/30 z-10 pointer-events-none border border-white/40" />
+        <div className="relative max-w-3xl mx-auto px-6 pt-24 pb-20" style={{ position: 'relative', zIndex: 20 }}>
           <div className="text-center">
             <div className="flex flex-col items-center mb-6 gap-2">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
@@ -327,17 +327,17 @@ type QuickAction = {
               </div>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-8 tracking-tight text-white drop-shadow-lg">
               Nihongo Space
               <br />
               <span className="text-yellow-300">Your Japanese Learning Hub</span>
             </h1>
-            <p className="text-xl mb-10 opacity-90 max-w-2xl mx-auto">
+            <p className="text-lg mb-12 opacity-90 max-w-xl mx-auto text-white/90">
               Learn Hiragana, Katakana, and more through interactive lessons, 
               smart flashcards, and the ultimate Kana Quiz experience.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
                 onClick={() => navigate("/kana-quiz")}
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition transform hover:-translate-y-1 shadow-lg"
@@ -356,7 +356,7 @@ type QuickAction = {
 
             {/* Progress Bar for Returning Users */}
             {learnedCount > 0 && (
-              <div className="mt-12 max-w-md mx-auto bg-white/20 backdrop-blur-sm rounded-xl p-4">
+              <div className="mt-12 max-w-md mx-auto bg-white/40 backdrop-blur-lg rounded-2xl p-6 border border-white/40 shadow-xl">
                 <div className="flex justify-between text-sm mb-2">
                   <span className="flex items-center gap-2">
                     <Star className="w-4 h-4 text-yellow-300" />
@@ -380,13 +380,13 @@ type QuickAction = {
       </div>
 
       {/* Quick Actions */}
-      <div className="max-w-7xl mx-auto px-4 -mt-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="max-w-5xl mx-auto px-4 -mt-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {quickActions.map((action, index) => (
             <button
               key={index}
               onClick={action.action}
-              className={`bg-gradient-to-r ${action.color} text-white rounded-2xl p-6 text-left hover:shadow-2xl transition-all transform hover:-translate-y-1 relative`}
+              className={`bg-white/60 backdrop-blur-2xl border border-white/60 text-gray-900 rounded-3xl p-8 text-left shadow-xl hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] transition-all duration-300 transform hover:-translate-y-2 relative`}
             >
               {action.badge && (
                 <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
@@ -398,8 +398,8 @@ type QuickAction = {
                 {React.createElement(action.icon, { className: "w-8 h-8" })}
                 <ArrowRight className="w-5 h-5 opacity-75" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{action.title}</h3>
-              <p className="text-white/90 text-sm">{action.description}</p>
+              <h3 className="text-xl font-bold mb-2 text-gray-900 drop-shadow-sm">{action.title}</h3>
+              <p className="text-gray-800 text-sm drop-shadow-sm">{action.description}</p>
             </button>
           ))}
         </div>
@@ -444,24 +444,25 @@ type QuickAction = {
       )}
 
       {/* Stats Section */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="max-w-5xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
           {stats.map((stat, index) => (
-            <div key={index} className={`p-6 rounded-2xl ${stat.color} shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1`}>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-lg bg-white/50">
-                  <stat.icon className="w-5 h-5" />
-                </div>
+            <div key={index} className="relative flex flex-col items-center justify-center w-44 h-44 bg-white/40 backdrop-blur-2xl rounded-full shadow-2xl border-4 border-transparent group transition-all duration-500 before:content-[''] before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-blue-300/60 before:via-pink-200/40 before:to-purple-200/60 before:animate-spin-slow before:z-0 hover:before:blur-[2px] hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.22)]">
+              <div className="absolute inset-2 rounded-full bg-white/30 backdrop-blur-2xl border-2 border-white/60 z-10" />
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-blue-400/70 via-pink-300/60 to-purple-400/70 backdrop-blur-xl rounded-full flex items-center justify-center shadow-xl border-2 border-white/80 z-20 group-hover:scale-110 group-hover:-translate-y-1 group-hover:shadow-2xl transition-transform duration-300">
+                <stat.icon className="w-8 h-8 text-white drop-shadow" />
               </div>
-              <div className="text-3xl font-bold">{stat.value}</div>
-              <div className="text-sm opacity-80">{stat.label}</div>
+              <div className="flex flex-col items-center justify-center h-full pt-10 z-20">
+                <div className="text-4xl font-extrabold mb-1 text-gray-900 drop-shadow-sm">{stat.value}</div>
+                <div className="text-base font-semibold text-gray-700 text-center opacity-90 px-2 tracking-wide">{stat.label}</div>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Main Learning Features */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Your Learning Journey</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -469,84 +470,96 @@ type QuickAction = {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {learningFeatures.map((feature, index) => (
             <div
               key={index}
               onClick={() => navigate(feature.link)}
-              className={`${feature.color} rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-transparent hover:border-gray-200 relative group`}
+              className="flex flex-row items-center bg-gradient-to-r from-white/60 via-blue-100/40 to-pink-100/40 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 md:p-8 cursor-pointer group transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:border-blue-200/60 mb-2"
             >
-              {/* Removed NEW badge for Kana Quiz Challenge */}
-              <div className="flex items-center justify-center w-16 h-16 rounded-xl mb-6 group-hover:scale-110 transition-transform">
+              <div className="flex-shrink-0 w-20 h-20 bg-white/70 backdrop-blur-2xl rounded-full flex items-center justify-center shadow-lg border-2 border-white/80 mr-6 group-hover:scale-105 transition-transform duration-300">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{feature.description}</p>
-              <div className="flex items-center justify-between mt-6">
-                <span className="text-xs font-medium text-gray-500 px-3 py-1 bg-white rounded-full">
-                  {feature.stats}
-                </span>
-                <button className="flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 hover:gap-2 transition-all">
-                  {feature.buttonText} <ArrowRight className="w-4 h-4 ml-1" />
-                </button>
+              <div className="flex-1 flex flex-col justify-center">
+                <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-1 drop-shadow-sm">{feature.title}</h3>
+                <p className="text-gray-700 text-base mb-3 opacity-90">{feature.description}</p>
+                <div className="flex items-center gap-4 mt-2">
+                  <span className="text-xs font-semibold text-blue-700 bg-white/80 rounded-full px-4 py-1 shadow-sm border border-blue-200/40">
+                    {feature.stats}
+                  </span>
+                  <button className="flex items-center text-sm font-bold text-blue-600 hover:text-blue-800 hover:gap-2 transition-all">
+                    {feature.buttonText} <ArrowRight className="w-4 h-4 ml-1" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Kana Quiz Highlight */}
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 py-16">
-        <div className="max-w-7xl mx-auto px-4">
+
+      {/* Kana Quiz Highlight - Glassmorphic Enhanced */}
+      <div className="relative py-20 mx-2">
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="w-full h-full animate-gradient-move bg-gradient-to-br from-purple-200/40 via-pink-200/30 to-blue-200/40 blur-2xl opacity-80 rounded-3xl" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Left: Info Card */}
             <div className="lg:w-1/2">
-              <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm mb-6">
-                <Target className="w-5 h-5 text-purple-600" />
-                <span className="text-sm font-medium text-purple-600">NEW FEATURE</span>
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Ultimate Kana Quiz Challenge
-              </h2>
-              <p className="text-gray-600 mb-8 text-lg">
-                Inspired by Tofugu's Kana Quiz, our advanced quiz system lets you test your 
-                knowledge with customizable settings, multiple modes, and detailed analytics.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {quizFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${feature.color}`}>
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">{feature.title}</h4>
-                      <p className="text-sm text-gray-600">{feature.description}</p>
-                    </div>
+              <div className="relative">
+                {/* Floating Glass Badge */}
+                <div className="absolute -top-8 left-0 flex items-center gap-2 bg-white/80 backdrop-blur-xl px-5 py-2 rounded-full shadow-lg border border-white/70">
+                  <Target className="w-5 h-5 text-purple-600 animate-pulse" />
+                  <span className="text-sm font-semibold text-purple-700 tracking-wide">NEW FEATURE</span>
+                </div>
+                <div className="bg-white/60 backdrop-blur-2xl border border-white/70 rounded-3xl shadow-2xl p-10 pt-16">
+                  <h2 className="text-4xl font-extrabold text-gray-900 mb-4 drop-shadow-lg">
+                    Ultimate Kana Quiz Challenge
+                  </h2>
+                  <p className="text-gray-700 mb-8 text-lg font-medium">
+                    Inspired by Tofugu's Kana Quiz, our advanced quiz system lets you test your 
+                    knowledge with customizable settings, multiple modes, and detailed analytics.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    {quizFeatures.map((feature, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg ${feature.color} bg-white/70 backdrop-blur-md shadow border border-white/40`}> 
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900">{feature.title}</h4>
+                          <p className="text-sm text-gray-600">{feature.description}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={() => navigate("/kana-quiz")}
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition transform hover:-translate-y-1"
-                >
-                  <Target className="w-5 h-5" />
-                  Start Quiz Challenge
-                </button>
-                <button
-                  onClick={() => navigate("/flashcards")}
-                  className="inline-flex items-center justify-center gap-2 bg-white border border-purple-200 text-purple-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-purple-50 transition"
-                >
-                  <Brain className="w-5 h-5" />
-                  Practice First
-                </button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      onClick={() => navigate("/kana-quiz")}
+                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transition transform hover:-translate-y-1"
+                    >
+                      <Target className="w-5 h-5" />
+                      Start Quiz Challenge
+                    </button>
+                    <button
+                      onClick={() => navigate("/flashcards")}
+                      className="inline-flex items-center justify-center gap-2 bg-white border border-purple-200 text-purple-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-purple-50 transition"
+                    >
+                      <Brain className="w-5 h-5" />
+                      Practice First
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            
+            {/* Right: Quiz Preview Card */}
             <div className="lg:w-1/2">
-              <div className="bg-white rounded-2xl shadow-2xl p-8 border border-purple-200">
-                <div className="flex items-center gap-3 mb-6">
+              <div className="bg-white/70 backdrop-blur-2xl rounded-2xl shadow-2xl p-10 border border-white/60 relative overflow-hidden">
+                {/* Subtle floating gradient blob */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-300/40 via-pink-300/30 to-blue-300/40 rounded-full blur-2xl opacity-60 animate-float" />
+                <div className="flex items-center gap-3 mb-6 relative z-10">
                   <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg">
                     <Target className="w-8 h-8 text-white" />
                   </div>
@@ -555,13 +568,11 @@ type QuickAction = {
                     <p className="text-gray-600">Try a sample question</p>
                   </div>
                 </div>
-                
-                <div className="space-y-6">
+                <div className="space-y-6 relative z-10">
                   <div className="text-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
                     <div className="text-6xl font-bold text-gray-900 mb-4">あ</div>
                     <p className="text-lg font-medium text-gray-700">What is the romaji for this character?</p>
                   </div>
-                  
                   <div className="grid grid-cols-2 gap-3">
                     <button className="p-4 bg-gray-50 hover:bg-gray-100 rounded-lg text-center transition">
                       <span className="font-mono text-lg">a</span>
@@ -576,7 +587,6 @@ type QuickAction = {
                       <span className="font-mono text-lg">e</span>
                     </button>
                   </div>
-                  
                   <div className="pt-4 border-t border-gray-200">
                     <p className="text-sm text-gray-500 text-center">
                       Real quiz includes dakuten, combos, and timing
@@ -589,26 +599,30 @@ type QuickAction = {
         </div>
       </div>
 
-      {/* Coming Soon Features */}
-      <div className="bg-gray-50 py-16">
+
+
+      {/* Coming Soon Features - Minimal Glass Card Stack */}
+      <div className="py-20 bg-gradient-to-b from-white/80 to-blue-50/60">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Coming Soon</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto font-medium">
               Exciting new features to help you become fluent in Japanese.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
             {comingSoonFeatures.map((feature, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all transform hover:-translate-y-2">
-                <div className="flex items-center justify-center w-16 h-16 rounded-xl mb-6 bg-gray-50">
+              <div key={index} className="flex-1 min-w-[260px] max-w-sm mx-auto bg-white/60 backdrop-blur-xl border border-white/70 rounded-2xl shadow-xl flex flex-col items-center p-8 relative overflow-hidden group transition-all hover:scale-105">
+                {/* Accent Bar */}
+                <div className="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-purple-400 via-pink-400 to-blue-400 opacity-60 rounded-l-2xl group-hover:opacity-80 transition-all" />
+                {/* Floating Icon */}
+                <div className="flex items-center justify-center w-14 h-14 rounded-full mb-6 bg-gradient-to-br from-purple-200/70 to-pink-200/70 shadow-lg border border-white/60 z-10">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 mb-4">{feature.description}</p>
-                <div className="mt-6">
-                  <span className="text-xs font-medium text-gray-400 px-3 py-1 bg-gray-100 rounded-full">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 z-10">{feature.title}</h3>
+                <p className="text-gray-700 mb-4 text-center z-10">{feature.description}</p>
+                <div className="mt-auto z-10">
+                  <span className="text-xs font-medium text-purple-700 px-3 py-1 bg-white/80 border border-purple-100 rounded-full shadow-sm">
                     {feature.stats}
                   </span>
                 </div>
@@ -619,32 +633,32 @@ type QuickAction = {
       </div>
 
       {/* How It Works */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-5xl mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
           Learn Smart, Not Hard
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center p-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-orange-400 rounded-full flex items-center justify-center mx-auto mb-6">
-              <BookOpen className="w-10 h-10 text-white" />
+          <div className="text-center p-10 bg-white/60 backdrop-blur-2xl border border-white/60 rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]">
+            <div className="w-24 h-24 bg-gradient-to-br from-white/70 to-blue-100/60 backdrop-blur-2xl border border-white/60 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+              <BookOpen className="w-10 h-10 text-gray-900" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Learn with Flashcards</h3>
             <p className="text-gray-600">
               Master characters with spaced repetition and smart review scheduling
             </p>
           </div>
-          <div className="text-center p-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Target className="w-10 h-10 text-white" />
+          <div className="text-center p-8 bg-white/40 backdrop-blur-lg border border-white/40 rounded-2xl shadow-xl">
+            <div className="w-20 h-20 bg-white/60 backdrop-blur-lg border border-white/40 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Target className="w-10 h-10 text-gray-900" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Test with Quizzes</h3>
             <p className="text-gray-600">
               Challenge yourself with customizable quizzes and track your progress
             </p>
           </div>
-          <div className="text-center p-6">
-            <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-6">
-              <TrendingUp className="w-10 h-10 text-white" />
+          <div className="text-center p-8 bg-white/40 backdrop-blur-lg border border-white/40 rounded-2xl shadow-xl">
+            <div className="w-20 h-20 bg-white/60 backdrop-blur-lg border border-white/40 rounded-full flex items-center justify-center mx-auto mb-6">
+              <TrendingUp className="w-10 h-10 text-gray-900" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">See Your Growth</h3>
             <p className="text-gray-600">
@@ -655,7 +669,7 @@ type QuickAction = {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-purple-500 to-blue-600 text-white py-16">
+      <div className="bg-white/60 backdrop-blur-2xl border border-white/60 rounded-3xl shadow-2xl py-20 mx-2 mt-16 transition-all duration-500 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Master Japanese?
@@ -684,7 +698,7 @@ type QuickAction = {
       </div>
 
       {/* Footer */}
-      <footer className="border-t bg-white py-12">
+      <footer className="border-t bg-white/60 backdrop-blur-2xl border-white/60 rounded-3xl shadow-2xl py-16 mt-16 mx-2 transition-all duration-500 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
