@@ -1,5 +1,5 @@
 // pages/Home.tsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   BookOpen, 
@@ -261,12 +261,60 @@ type QuickAction = {
 
   const recentQuiz = getRecentQuizResult();
 
+  // Unsplash API dynamic image logic
+  const [unsplashUrl, setUnsplashUrl] = useState<string>("");
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
+        const response = await fetch(
+          `https://api.unsplash.com/photos/random?query=japan&orientation=landscape&client_id=${accessKey}`
+        );
+        const data = await response.json();
+        if (data && data.urls && data.urls.full) {
+          const url = data.urls.full + "&w=1920&q=80&auto=format";
+          setUnsplashUrl(url);
+          localStorage.setItem('heroImageUrl', url);
+          localStorage.setItem('heroImageTimestamp', Date.now().toString());
+        } else {
+          setUnsplashUrl("");
+        }
+      } catch (e) {
+        setUnsplashUrl("");
+      }
+    };
+
+    const now = Date.now();
+    const lastTimestamp = parseInt(localStorage.getItem('heroImageTimestamp') || '0', 10);
+    const lastUrl = localStorage.getItem('heroImageUrl') || '';
+    // 15 minutes = 900000 ms
+    if (lastUrl && lastTimestamp && now - lastTimestamp < 900000) {
+      setUnsplashUrl(lastUrl);
+    } else {
+      fetchImage();
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-blue-50">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-purple-500 to-blue-600 text-white">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 pt-20 pb-16">
+      <div className="relative overflow-hidden text-white">
+        {/* Unsplash Japan image as background (rotates every 15 min) */}
+        <img
+          src={unsplashUrl || "/su-san-lee-E_eWwM29wfU-unsplash.jpg"}
+          alt="Japan background"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ pointerEvents: 'none', userSelect: 'none' }}
+          onError={e => {
+            const target = e.currentTarget;
+            if (target.src !== '/su-san-lee-E_eWwM29wfU-unsplash.jpg') {
+              target.src = '/su-san-lee-E_eWwM29wfU-unsplash.jpg';
+            }
+          }}
+        />
+        {/* Semi-transparent dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-10 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-4 pt-20 pb-16" style={{ position: 'relative', zIndex: 20 }}>
           <div className="text-center">
             <div className="flex flex-col items-center mb-6 gap-2">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
