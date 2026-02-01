@@ -24,6 +24,7 @@ import SettingsPage from "./pages/SettingsPage";
 // Admin
 import HiraganaAdmin from "./pages/admin/HiraganaAdmin";
 import KatakanaAdmin from "./pages/admin/KatakanaAdmin";
+import VocabAdminPage from "./pages/VocabAdminPage";
 import AdminDashboard from "./component/Router/AdminDashboard";
 import ProtectedRoute from "./component/Router/ProtectedRoute";
 import KanaQuiz from "./pages/KanaQuiz";
@@ -102,6 +103,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* ---------------- ADMIN VOCAB PAGE (INDEPENDENT) ---------------- */}
+          <Route path="/VocabAdminPage" element={<VocabAdminPage />} />
 
           {/* ---------------- 404 ---------------- */}
           <Route path="*" element={<Navigate to="/" replace />} />
