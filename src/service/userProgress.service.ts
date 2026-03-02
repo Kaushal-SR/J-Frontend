@@ -44,3 +44,26 @@ export const setVocabBookmark = (itemId: string, value: boolean) => {
 export const getVocabProgress = () => {
   return api.get("/user-progress/learned"); // Optionally filter for VOCAB in frontend
 };
+
+// --- Kanji Progress API ---
+export const markKanjiLearned = (itemId: string) => {
+  return api.post("/user-progress/learned", {
+    itemId,
+    itemType: "KANJI",
+  });
+};
+
+export const markKanjiNotLearned = (itemId: string) => {
+  return api.post("/user-progress/not-learned", {
+    itemId,
+    itemType: "KANJI",
+  });
+};
+
+export const setKanjiBookmark = (itemId: string, value: boolean) => {
+  return api.post("/user-progress/bookmark", {
+    itemId,
+    itemType: "KANJI",
+    value,
+  });
+};

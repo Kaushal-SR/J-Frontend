@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 // import KanjiN3Data from '../assets/Kanji_N3.json';
 // import KanjiN2Data from '../assets/Kanji_N2.json';
 import { fetchKanji } from '../api/kanjiApi';
+import { getLearnedProgress, markKanjiLearned, markKanjiNotLearned, setKanjiBookmark } from '../service/userProgress.service';
 import KanjiTable from '../component/kanji/KanjiTable';
 import KanjiGrid from '../component/kanji/KanjiGrid';
 import {
@@ -129,8 +130,9 @@ interface KanjiCharacter {
       }, 300); // Simulate async
     };
 
-    // Start flashcard mode
+    // Start flashcard mode (make it the only active view)
     const startFlashcardMode = () => {
+      setPracticeMode(false);
       setFlashcardMode(true);
       setShownIds([]);
       setIsEnd(false);
@@ -147,42 +149,68 @@ interface KanjiCharacter {
     };
 
     // Mark as known/unknown in flashcard mode
-    const markFlashcardKnown = () => {
+    const markFlashcardKnown = async () => {
       if (!currentFlashcard) return;
       const nextShown = [...shownIds, currentFlashcard.id];
       setShownIds(nextShown);
+
+      try {
+        await markKanjiLearned(currentFlashcard.id);
+        setLearnedKanjiIds(prev =>
+          prev.includes(currentFlashcard.id) ? prev : [...prev, currentFlashcard.id],
+        );
+      } catch (e) {
+        console.error('Failed to mark flashcard kanji learned', e);
+      }
+
       fetchNextFlashcard(nextShown);
     };
-    const markFlashcardUnknown = () => {
+    const markFlashcardUnknown = async () => {
       if (!currentFlashcard) return;
       const nextShown = [...shownIds, currentFlashcard.id];
       setShownIds(nextShown);
+
+      try {
+        await markKanjiNotLearned(currentFlashcard.id);
+        setLearnedKanjiIds(prev => prev.filter(id => id !== currentFlashcard.id));
+      } catch (e) {
+        console.error('Failed to mark flashcard kanji not learned', e);
+      }
+
       fetchNextFlashcard(nextShown);
     };
 
     // Toggle bookmark for flashcard kanji
-    const toggleFlashcardBookmark = () => {
+    const toggleFlashcardBookmark = async () => {
       if (!currentFlashcard) return;
       setKanjiList(prev => prev.map(k =>
         k.id === currentFlashcard.id ? { ...k, isBookmarked: !k.isBookmarked } : k
       ));
       setCurrentFlashcard(cur => cur ? { ...cur, isBookmarked: !cur.isBookmarked } : cur);
+
+      try {
+        await setKanjiBookmark(currentFlashcard.id, !currentFlashcard.isBookmarked);
+      } catch (e) {
+        console.error('Failed to update flashcard kanji bookmark', e);
+      }
     };
   const [selectedStatus, setSelectedStatus] = useState<KanjiStatus | 'all'>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [showDetails, setShowDetails] = useState(false);
-  const [practiceMode, setPracticeMode] = useState<'' | 'practice' | 'reading' | 'meaning' | 'writing'>('');
+  const [practiceMode, setPracticeMode] = useState(false); // simple on/off for Quiz box
   const [userAnswer, setUserAnswer] = useState('');
   const [showAnswer, setShowAnswer] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [stats, setStats] = useState({
-    totalKanji: 2136,
-    learned: 8,
-    inProgress: 4,
-    accuracy: 85,
-    streak: 12
+    totalKanji: 0,
+    learned: 0,
+    inProgress: 0,
+    accuracy: 0,
+    streak: 0,
   });
   const [kanjiListStyle, setKanjiListStyle] = useState<'list' | 'grid'>('list');
+  const [learnedKanjiIds, setLearnedKanjiIds] = useState<string[]>([]);
+  const [showBookmarksModal, setShowBookmarksModal] = useState(false);
 
   const filteredKanji = kanjiList.filter(kanji => {
     const matchesLevel = selectedLevel === 'all' || kanji.jlptLevel === selectedLevel;
@@ -193,6 +221,57 @@ interface KanjiCharacter {
                          kanji.kunyomi.some(k => k.toLowerCase().includes(searchTerm.toLowerCase()));
     return matchesLevel && matchesStatus && matchesSearch;
   });
+
+  // Load learned kanji progress from backend when the kanji list is available
+  useEffect(() => {
+    if (!kanjiList.length) return;
+
+    const loadProgress = async () => {
+      try {
+        const res: any = await getLearnedProgress();
+        const learnedFromApi: string[] = (res.data || [])
+          .filter((p: any) => p.itemType === 'KANJI' && p.learned)
+          .map((p: any) => p.itemId);
+
+        setLearnedKanjiIds(learnedFromApi);
+
+        // Reflect learned status in local kanji list
+        setKanjiList(prev =>
+          prev.map(k =>
+            learnedFromApi.includes(k.id)
+              ? { ...k, status: 'mastered' as KanjiStatus }
+              : k,
+          ),
+        );
+      } catch (e) {
+        console.error('Failed to load kanji progress', e);
+      }
+    };
+
+    loadProgress();
+  }, [kanjiList.length]);
+
+  // Recompute top stats when filters or learned IDs change
+  useEffect(() => {
+    const filtered = kanjiList.filter(kanji => {
+      const matchesLevel = selectedLevel === 'all' || kanji.jlptLevel === selectedLevel;
+      const matchesStatus = selectedStatus === 'all' || kanji.status === selectedStatus;
+      const matchesSearch = kanji.character.includes(searchTerm) ||
+        kanji.meaning.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        kanji.onyomi.some(o => o.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        kanji.kunyomi.some(k => k.toLowerCase().includes(searchTerm.toLowerCase()));
+      return matchesLevel && matchesStatus && matchesSearch;
+    });
+
+    const learnedCount = filtered.filter(k => learnedKanjiIds.includes(k.id)).length;
+
+    setStats(prev => ({
+      ...prev,
+      totalKanji: filtered.length,
+      learned: learnedCount,
+      inProgress: Math.max(filtered.length - learnedCount, 0),
+    }));
+  }, [kanjiList, selectedLevel, selectedStatus, searchTerm, learnedKanjiIds]);
 
   // Shuffle logic
   useEffect(() => {
@@ -248,34 +327,9 @@ interface KanjiCharacter {
     speechSynthesis.speak(utterance);
   };
 
-  const checkAnswer = () => {
-    if (!currentKanji) return;
+  // Quiz answer logic removed for now (practice mode under redesign)
 
-    let correct = false;
-    const userAnswerLower = userAnswer.toLowerCase().trim();
-
-    if (practiceMode === 'meaning') {
-      correct = currentKanji.meaning.toLowerCase().includes(userAnswerLower) ||
-                userAnswerLower.includes(currentKanji.meaning.toLowerCase());
-    } else if (practiceMode === 'reading') {
-      correct = currentKanji.onyomi.some(o => o.toLowerCase() === userAnswerLower) ||
-                currentKanji.kunyomi.some(k => k.toLowerCase() === userAnswerLower);
-    }
-
-    setIsCorrect(correct);
-    setShowAnswer(true);
-
-    // Update kanji status based on answer
-    if (correct) {
-      setKanjiList(prev => prev.map(k =>
-        k.id === currentKanji.id
-          ? { ...k, status: 'mastered', reviewCount: k.reviewCount + 1 }
-          : k
-      ));
-    }
-  };
-
-  // Reset answer state when moving to a new kanji or changing practice mode
+  // Reset answer state when moving to a new kanji or toggling Quiz
   useEffect(() => {
     setShowAnswer(false);
     setIsCorrect(null);
@@ -283,12 +337,20 @@ interface KanjiCharacter {
   }, [currentKanjiIndex, practiceMode]);
 
   // Toggle bookmark status for a kanji by id
-  const toggleBookmark = (id: string) => {
+  const toggleBookmark = async (id: string) => {
     setKanjiList(prev =>
       prev.map(k =>
         k.id === id ? { ...k, isBookmarked: !k.isBookmarked } : k
-      )
+      ),
     );
+
+    const target = kanjiList.find(k => k.id === id);
+    const newValue = target ? !target.isBookmarked : true;
+    try {
+      await setKanjiBookmark(id, newValue);
+    } catch (e) {
+      console.error('Failed to update kanji bookmark', e);
+    }
   };
 
 
@@ -312,7 +374,7 @@ interface KanjiCharacter {
     return null;
   };
 
-  // Keyboard navigation for previous/next kanji in practice mode
+  // Keyboard navigation for previous/next kanji in Quiz mode
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!practiceMode) return;
     if (e.key === 'ArrowLeft') {
@@ -338,23 +400,132 @@ interface KanjiCharacter {
         </div>
       )}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
+        {/* Header container (currently no title/subtitle as per design) */}
         <div className="mb-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
-                <PenTool className="w-8 h-8 text-amber-600" />
-                Kanji Learning
-              </h1>
-              <p className="text-gray-600">Master Japanese characters with stroke order and mnemonics</p>
+          {/* Top controls: search + JLPT level selector + mode buttons */}
+          <div className="bg-white rounded-2xl shadow-sm border mb-4 px-4 py-4 md:px-6 md:py-5">
+            <div className="flex flex-col gap-4">
+              {/* Search bar - full width */}
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search kanji by character, meaning, or reading..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 md:py-3 border rounded-xl text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-gray-50/60"
+                />
+              </div>
+
+              {/* Levels + mode buttons row */}
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                {/* JLPT level selector */}
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="text-xs md:text-sm font-medium text-gray-600 whitespace-nowrap">JLPT Level</span>
+                  <div className="flex flex-wrap gap-1.5 md:gap-2">
+                    {jlptLevels.map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setSelectedLevel(level)}
+                        className={`px-3 py-1.5 md:px-3.5 md:py-1.5 rounded-full text-xs md:text-sm font-medium transition border ${
+                          selectedLevel === level
+                            ? getLevelColor(level) + ' border-transparent shadow-sm'
+                            : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                        }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* View mode + flashcard + Quiz controls */}
+                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                  <button
+                    className={`px-4 py-2 rounded-lg border text-sm font-medium transition ${
+                    !flashcardMode && !practiceMode && kanjiListStyle === 'list'
+                      ? 'bg-blue-50 text-blue-700 border-blue-200'
+                      : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                    }`}
+                    onClick={() => {
+                      setPracticeMode(false);
+                      endFlashcardMode();
+                      setKanjiListStyle('list');
+                    }}
+                  >
+                    List View
+                  </button>
+                  <button
+                    className={`px-4 py-2 rounded-lg border text-sm font-medium transition ${
+                    !flashcardMode && !practiceMode && kanjiListStyle === 'grid'
+                      ? 'bg-blue-50 text-blue-700 border-blue-200'
+                      : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                    }`}
+                    onClick={() => {
+                      setPracticeMode(false);
+                      endFlashcardMode();
+                      setKanjiListStyle('grid');
+                    }}
+                  >
+                    Grid View
+                  </button>
+
+                  <button
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition border flex items-center gap-2 ${
+                      flashcardMode
+                        ? 'bg-purple-50 text-purple-700 border-purple-200'
+                        : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                    }`}
+                    onClick={() => {
+                      if (flashcardMode) {
+                        endFlashcardMode();
+                        setPracticeMode(false);
+                      } else {
+                        setPracticeMode(false);
+                        startFlashcardMode();
+                      }
+                    }}
+                  >
+                    <Zap className="w-4 h-4" />
+                    Flashcard
+                  </button>
+
+                  <button
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition border flex items-center gap-2 ${
+                      practiceMode && !flashcardMode
+                        ? 'bg-amber-50 text-amber-700 border-amber-200'
+                        : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                    }`}
+                    onClick={() => {
+                      if (practiceMode) {
+                        setPracticeMode(false);
+                      } else {
+                        setPracticeMode(true);
+                        endFlashcardMode();
+                      }
+                    }}
+                  >
+                    <Target className="w-4 h-4" />
+                    Quiz
+                  </button>
+
+                  <button
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition border flex items-center gap-2 ${
+                      showBookmarksModal
+                        ? 'bg-amber-50 text-amber-700 border-amber-200'
+                        : 'bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100'
+                    }`}
+                    onClick={() => setShowBookmarksModal(true)}
+                  >
+                    <Bookmark className="w-4 h-4" />
+                    Bookmarks
+                  </button>
+                </div>
+              </div>
             </div>
-            <button className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl hover:shadow-lg transition-all flex items-center gap-2">
-              <Sparkles className="w-5 h-5" />
-              Learning Path
-            </button>
           </div>
 
-          {/* Stats */}
+          {/* Individual stat cards in header area */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div className="bg-white p-4 rounded-xl shadow-sm border">
               <div className="text-2xl font-bold text-amber-600">
@@ -380,288 +551,129 @@ interface KanjiCharacter {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Filters & List */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Search */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 border">
-              <div className="relative mb-6">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search kanji..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
-                />
-              </div>
-
-              {/* JLPT Levels */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-blue-600" />
-                  JLPT Level
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {jlptLevels.map((level) => (
-                    <button
-                      key={level}
-                      onClick={() => setSelectedLevel(level)}
-                      className={`px-3 py-2 rounded-lg transition ${
-                        selectedLevel === level
-                          ? getLevelColor(level)
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      {level}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Status Filter */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4">Status</h3>
-                <div className="space-y-2">
-                  {statusOptions.map((status) => (
-                    <button
-                      key={status}
-                      onClick={() => setSelectedStatus(status)}
-                      className={`w-full text-left p-3 rounded-lg transition ${
-                        selectedStatus === status
-                          ? status === 'all' 
-                            ? 'bg-amber-50 text-amber-700 border border-amber-200' 
-                            : getStatusColor(status as KanjiStatus) + ' border'
-                          : 'hover:bg-gray-50 text-gray-700'
-                      }`}
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="capitalize">{status}</span>
-                        <span className="text-sm bg-gray-100 px-2 py-1 rounded">
-                          {status === 'all' 
-                            ? kanjiList.length 
-                            : kanjiList.filter(k => k.status === status).length}
-                        </span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Flashcard Mode Block (sidebar): only launches/ends mode */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 border">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-purple-600" />
-                Flashcard Mode
-              </h3>
-              <div className="text-base text-purple-700 font-bold mb-2">Flashcard-style kanji review</div>
-              <div className="text-sm text-purple-600 mb-4">Quickly test your kanji knowledge in a flashcard format. Flip through kanji and reveal meanings/readings.</div>
-              <button
-                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:shadow-lg transition-all w-full font-semibold"
-                onClick={flashcardMode ? endFlashcardMode : startFlashcardMode}
-              >
-                {flashcardMode ? 'Exit Flashcard Mode' : 'Start Flashcard Mode'}
-              </button>
-            </div>
-
-            {/* Practice Modes */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 border">
-              <h3 className="text-lg font-semibold mb-4">Practice Mode</h3>
-              <div className="space-y-3">
-                <div className={`w-full text-left p-3 rounded-lg mb-2 flex items-center gap-3 cursor-default select-none ${
-                  practiceMode ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-gray-50 text-gray-700'
-                }`}>
-                  <Target className="w-5 h-5" />
-                  <div>
-                    <div className="font-medium">Practice</div>
-                    <div className="text-sm opacity-75">Interactive kanji practice</div>
-                  </div>
-                </div>
-                {(['meaning', 'reading', 'writing'] as const).map((mode) => (
-                  <button
-                    key={mode}
-                    onClick={() => setPracticeMode(practiceMode === mode ? '' : mode)}
-                    className={`w-full text-left p-3 rounded-lg transition ${
-                      practiceMode === mode
-                        ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                        : 'hover:bg-gray-50 text-gray-700'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      {mode === 'meaning' && <BookOpen className="w-5 h-5" />}
-                      {mode === 'reading' && <Volume2 className="w-5 h-5" />}
-                      {mode === 'writing' && <PenTool className="w-5 h-5" />}
-                      <div>
-                        <div className="font-medium capitalize">{mode}</div>
-                        <div className="text-sm opacity-75">
-                          {mode === 'meaning' && 'Guess the meaning'}
-                          {mode === 'reading' && 'Identify the reading'}
-                          {mode === 'writing' && 'Practice stroke order'}
+          {/* Main Learning Area */}
+          <div className="lg:col-span-3 lg:col-start-1">
+            <div>
+              {flashcardMode ? (
+                <div className="mb-8">
+                  {/* Flashcard Mode UI */}
+                  {isCardLoading ? (
+                    <div className="flex items-center justify-center h-60">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+                    </div>
+                  ) : isEnd ? (
+                    <div className="text-center">
+                      <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                      <div className="text-2xl font-bold text-gray-900 mb-2">No more kanji in this level</div>
+                      <button
+                        onClick={startFlashcardMode}
+                        className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:shadow-lg transition-all mt-2"
+                      >
+                        Restart Flashcard Mode
+                      </button>
+                      <button
+                        onClick={endFlashcardMode}
+                        className="ml-2 px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-all mt-2"
+                      >
+                        Exit
+                      </button>
+                    </div>
+                  ) : currentFlashcard ? (
+                    <div className="bg-white rounded-2xl shadow-lg p-8 border flex flex-col items-center relative">
+                      {/* Show Details Button - top right */}
+                      <button
+                        className="absolute top-4 right-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold hover:bg-blue-200 transition z-10"
+                        onClick={() => setShowDetails((prev) => !prev)}
+                      >
+                        {showDetails ? 'Hide Details' : 'Show Details'}
+                      </button>
+                      <div className="flex flex-col items-center gap-2 mb-6">
+                        <span className="text-7xl md:text-8xl font-bold text-gray-900">{currentFlashcard.character}</span>
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className={`px-3 py-1 rounded-lg text-xs font-semibold ${getLevelColor(currentFlashcard.jlptLevel)}`}>{currentFlashcard.jlptLevel}</span>
+                          <button
+                            onClick={toggleFlashcardBookmark}
+                            className={
+                              currentFlashcard.isBookmarked
+                                ? 'text-yellow-400 hover:text-yellow-500 transition'
+                                : 'text-gray-300 hover:text-yellow-400 transition'
+                            }
+                            title={currentFlashcard.isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
+                            style={{ outline: 'none', border: 'none', background: 'none', padding: 0 }}
+                          >
+                            <Star className="w-8 h-8" fill={currentFlashcard.isBookmarked ? '#facc15' : 'none'} />
+                          </button>
                         </div>
                       </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Bookmarked Kanji */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 border">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                <Bookmark className="w-5 h-5 text-amber-600" />
-                Bookmarked Kanji
-              </h3>
-              <div className="space-y-3">
-                {kanjiList.filter(k => k.isBookmarked).slice(0, 5).map((kanji) => (
-                  <div key={kanji.id} className="flex items-center justify-between p-3 bg-amber-50 rounded-lg">
-                    <div className="flex items-center gap-3">
-                      <div className="text-2xl font-bold">{kanji.character}</div>
-                      <div>
-                        <div className="font-medium">{kanji.meaning}</div>
-                        <div className="text-sm text-gray-600">{kanji.onyomi[0]}</div>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => toggleBookmark(kanji.id)}
-                      className="text-amber-600 hover:text-amber-700"
-                    >
-                      <Bookmark className="w-5 h-5 fill-current" />
-                    </button>
-                  </div>
-                ))}
-                {kanjiList.filter(k => k.isBookmarked).length === 0 && (
-                  <p className="text-gray-500 text-center py-4">No bookmarked kanji yet</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-
-          {/* Main Learning Area */}
-          <div className="lg:col-span-2">
-            {flashcardMode && (
-              <div className="mb-8">
-                {/* Flashcard Mode UI (moved from sidebar) */}
-                {isCardLoading ? (
-                  <div className="flex items-center justify-center h-60">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
-                  </div>
-                ) : isEnd ? (
-                  <div className="text-center">
-                    <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                    <div className="text-2xl font-bold text-gray-900 mb-2">No more kanji in this level</div>
-                    <button
-                      onClick={startFlashcardMode}
-                      className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:shadow-lg transition-all mt-2"
-                    >
-                      Restart Flashcard Mode
-                    </button>
-                    <button
-                      onClick={endFlashcardMode}
-                      className="ml-2 px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-all mt-2"
-                    >
-                      Exit
-                    </button>
-                  </div>
-                ) : currentFlashcard ? (
-                  <div className="bg-white rounded-2xl shadow-lg p-8 border flex flex-col items-center relative">
-                    {/* Show Details Button - top right */}
-                    <button
-                      className="absolute top-4 right-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold hover:bg-blue-200 transition z-10"
-                      onClick={() => setShowDetails((prev) => !prev)}
-                    >
-                      {showDetails ? 'Hide Details' : 'Show Details'}
-                    </button>
-                    <div className="flex flex-col items-center gap-2 mb-6">
-                      <span className="text-7xl md:text-8xl font-bold text-gray-900">{currentFlashcard.character}</span>
-                      <div className="flex items-center gap-2 mt-2">
-                        <span className={`px-3 py-1 rounded-lg text-xs font-semibold ${getLevelColor(currentFlashcard.jlptLevel)}`}>{currentFlashcard.jlptLevel}</span>
+                      {/* Details Section */}
+                      {showDetails && (
+                        <div className="w-full mt-2 p-4 border rounded-xl bg-gray-50 animate-fade-in">
+                          <div className="mb-2"><b>Meaning:</b> {currentFlashcard.meaning}</div>
+                          <div className="mb-2"><b>Onyomi:</b> {currentFlashcard.onyomi.join(', ')}</div>
+                          <div className="mb-2"><b>Kunyomi:</b> {currentFlashcard.kunyomi.join(', ')}</div>
+                          <div className="mb-2"><b>Strokes:</b> {currentFlashcard.strokes}</div>
+                          <div className="mb-2"><b>Radicals:</b> {currentFlashcard.radicals.join(', ')}</div>
+                          {/* Add more details as needed */}
+                        </div>
+                      )}
+                      {showFlashcardAnswer ? (
+                        <div className="w-full animate-fade-in">
+                          <div className="text-2xl font-bold text-green-700 mb-2">{currentFlashcard.meaning}</div>
+                          <div className="text-xl text-blue-700 mb-2">On'yomi: {currentFlashcard.onyomi.join(', ')}</div>
+                          <div className="text-xl text-purple-700 mb-2">Kun'yomi: {currentFlashcard.kunyomi.join(', ')}</div>
+                          <div className="text-sm text-gray-500">Strokes: {currentFlashcard.strokes}</div>
+                        </div>
+                      ) : (
                         <button
-                          onClick={toggleFlashcardBookmark}
-                          className={
-                            currentFlashcard.isBookmarked
-                              ? 'text-yellow-400 hover:text-yellow-500 transition'
-                              : 'text-gray-300 hover:text-yellow-400 transition'
-                          }
-                          title={currentFlashcard.isBookmarked ? 'Remove Bookmark' : 'Bookmark'}
-                          style={{ outline: 'none', border: 'none', background: 'none', padding: 0 }}
+                          onClick={() => setShowFlashcardAnswer(true)}
+                          className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:shadow-lg transition-all flex items-center gap-2 mx-auto mt-4 text-lg"
                         >
-                          <Star className="w-8 h-8" fill={currentFlashcard.isBookmarked ? '#facc15' : 'none'} />
+                          <Sparkles className="w-6 h-6" />
+                          Show Answer
                         </button>
+                      )}
+                      <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 w-full">
+                        <button
+                          onClick={() => playAudio(currentFlashcard.character)}
+                          className="px-8 py-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all flex items-center gap-2 w-full text-lg"
+                        >
+                          <Volume2 className="w-6 h-6" />
+                          Listen
+                        </button>
+                        <div className="flex gap-4 w-full">
+                          <button
+                            onClick={markFlashcardUnknown}
+                            className="px-8 py-4 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all flex items-center gap-2 w-full text-lg"
+                          >
+                            <XCircle className="w-6 h-6" />
+                            Don't Know
+                          </button>
+                          <button
+                            onClick={markFlashcardKnown}
+                            className="px-8 py-4 bg-green-100 text-green-700 rounded-xl hover:bg-green-200 transition-all flex items-center gap-2 w-full text-lg"
+                          >
+                            <CheckCircle className="w-6 h-6" />
+                            I Know It
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    {/* Details Section */}
-                    {showDetails && (
-                      <div className="w-full mt-2 p-4 border rounded-xl bg-gray-50 animate-fade-in">
-                        <div className="mb-2"><b>Meaning:</b> {currentFlashcard.meaning}</div>
-                        <div className="mb-2"><b>Onyomi:</b> {currentFlashcard.onyomi.join(', ')}</div>
-                        <div className="mb-2"><b>Kunyomi:</b> {currentFlashcard.kunyomi.join(', ')}</div>
-                        <div className="mb-2"><b>Strokes:</b> {currentFlashcard.strokes}</div>
-                        <div className="mb-2"><b>Radicals:</b> {currentFlashcard.radicals.join(', ')}</div>
-                        {/* Add more details as needed */}
-                      </div>
-                    )}
-                    {showFlashcardAnswer ? (
-                      <div className="w-full animate-fade-in">
-                        <div className="text-2xl font-bold text-green-700 mb-2">{currentFlashcard.meaning}</div>
-                        <div className="text-xl text-blue-700 mb-2">On'yomi: {currentFlashcard.onyomi.join(', ')}</div>
-                        <div className="text-xl text-purple-700 mb-2">Kun'yomi: {currentFlashcard.kunyomi.join(', ')}</div>
-                        <div className="text-sm text-gray-500">Strokes: {currentFlashcard.strokes}</div>
-                      </div>
-                    ) : (
                       <button
-                        onClick={() => setShowFlashcardAnswer(true)}
-                        className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:shadow-lg transition-all flex items-center gap-2 mx-auto mt-4 text-lg"
+                        onClick={endFlashcardMode}
+                        className="mt-8 px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-all text-lg"
                       >
-                        <Sparkles className="w-6 h-6" />
-                        Show Answer
+                        Exit Flashcard Mode
                       </button>
-                    )}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 w-full">
-                      <button
-                        onClick={() => playAudio(currentFlashcard.character)}
-                        className="px-8 py-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all flex items-center gap-2 w-full text-lg"
-                      >
-                        <Volume2 className="w-6 h-6" />
-                        Listen
-                      </button>
-                      <div className="flex gap-4 w-full">
-                        <button
-                          onClick={markFlashcardUnknown}
-                          className="px-8 py-4 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-all flex items-center gap-2 w-full text-lg"
-                        >
-                          <XCircle className="w-6 h-6" />
-                          Don't Know
-                        </button>
-                        <button
-                          onClick={markFlashcardKnown}
-                          className="px-8 py-4 bg-green-100 text-green-700 rounded-xl hover:bg-green-200 transition-all flex items-center gap-2 w-full text-lg"
-                        >
-                          <CheckCircle className="w-6 h-6" />
-                          I Know It
-                        </button>
-                      </div>
                     </div>
-                    <button
-                      onClick={endFlashcardMode}
-                      className="mt-8 px-6 py-3 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-all text-lg"
-                    >
-                      Exit Flashcard Mode
-                    </button>
-                  </div>
-                ) : null}
-              </div>
-            )}
-            {/* Kanji List always present, moves below flashcard mode if active */}
-            <div className={flashcardMode ? '' : ''}>
-              {selectedLevel === 'N1' && !practiceMode ? (
+                  ) : null}
+                </div>
+              ) : selectedLevel === 'N1' && !practiceMode ? (
                 <div className="flex items-center justify-center h-96">
                   <span className="text-3xl text-gray-400 font-bold">Coming Soon</span>
                 </div>
               ) : practiceMode ? (
                 currentKanji ? (
                   <div className="bg-white rounded-2xl shadow-lg p-6 border">
-                    {/* Progress & Navigation */}
+                    {/* Quiz box - layout preserved, content to be redesigned later */}
                     <div className="flex justify-between items-center mb-8">
                       <div className="flex items-center gap-4">
                         <button
@@ -728,64 +740,10 @@ interface KanjiCharacter {
                         </div>
                       </div>
                     </div>
-                    {/* Practice Question */}
-                    {practiceMode !== 'writing' && practiceMode && (
-                      <div className="mb-8">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">
-                          {practiceMode === 'meaning' 
-                            ? 'What does this kanji mean?' 
-                            : 'What is the reading of this kanji?'}
-                        </h3>
-                        <div className="max-w-md mx-auto">
-                          <input
-                            type="text"
-                            value={userAnswer}
-                            onChange={(e) => setUserAnswer(e.target.value)}
-                            onKeyPress={(e) => e.key === 'Enter' && checkAnswer()}
-                            className="w-full p-4 text-center text-xl border-2 rounded-lg focus:outline-none focus:border-amber-500"
-                            placeholder={practiceMode === 'meaning' ? 'Type meaning...' : 'Type reading...'}
-                            autoFocus
-                          />
-                          {showAnswer && (
-                            <div className={`mt-4 p-4 rounded-lg animate-fade-in ${
-                              isCorrect ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
-                            }`}>
-                              <div className="flex items-center justify-center gap-2">
-                                {isCorrect ? (
-                                  <>
-                                    <CheckCircle className="w-5 h-5" />
-                                    <span className="font-bold">Correct!</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <XCircle className="w-5 h-5" />
-                                    <span className="font-bold">Incorrect</span>
-                                  </>
-                                )}
-                              </div>
-                              <div className="mt-2">
-                                {practiceMode === 'meaning' 
-                                  ? `Meaning: ${currentKanji.meaning}`
-                                  : `Readings: On'yomi: ${currentKanji.onyomi.join(', ')} | Kun'yomi: ${currentKanji.kunyomi.join(', ')}`}
-                              </div>
-                            </div>
-                          )}
-                          <button
-                            onClick={checkAnswer}
-                            disabled={!userAnswer.trim() || showAnswer}
-                            className={`w-full mt-4 p-4 rounded-xl transition-all ${
-                              !userAnswer.trim() || showAnswer
-                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                : 'bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:shadow-lg'
-                            }`}
-                          >
-                            {showAnswer ? 'Next' : 'Check Answer'}
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                    {/* Writing Practice */}
-                    {practiceMode === 'writing' && renderWritingGuide()}
+                    {/* Quiz content intentionally left blank for now */}
+                    <div className="mb-8">
+                      {/* TODO: Quiz interactions will be implemented here */}
+                    </div>
                     {/* Kanji Details */}
                     {showDetails && (
                       <div className="mt-8 pt-8 border-t animate-fade-in">
@@ -898,20 +856,6 @@ interface KanjiCharacter {
                 <div className="bg-white rounded-2xl shadow-lg p-6 border">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-bold">Kanji List</h2>
-                    <div className="flex gap-2">
-                      <button
-                        className={`px-4 py-2 rounded-lg border text-sm font-medium transition ${kanjiListStyle === 'list' ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-700 border-gray-200'}`}
-                        onClick={() => setKanjiListStyle('list')}
-                      >
-                        List View
-                      </button>
-                      <button
-                        className={`px-4 py-2 rounded-lg border text-sm font-medium transition ${kanjiListStyle === 'grid' ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-700 border-gray-200'}`}
-                        onClick={() => setKanjiListStyle('grid')}
-                      >
-                        Grid View
-                      </button>
-                    </div>
                   </div>
                   {kanjiListStyle === 'list' ? (
                     <KanjiTable kanjiList={filteredKanji} />
@@ -952,6 +896,68 @@ interface KanjiCharacter {
           </div>
         </div>
       </div>
+
+      {showBookmarksModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full mx-4 max-h-[70vh] flex flex-col">
+            <div className="flex items-center justify-between px-5 py-4 border-b">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Bookmark className="w-4 h-4 text-amber-600" />
+                Bookmarked Kanji
+              </h3>
+              <button
+                onClick={() => setShowBookmarksModal(false)}
+                className="p-1 rounded-full hover:bg-gray-100 text-gray-500"
+              >
+                <XCircle className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-4 overflow-y-auto">
+              {kanjiList.filter(k => k.isBookmarked).length > 0 ? (
+                <div className="space-y-2">
+                  {kanjiList.filter(k => k.isBookmarked).map((kanji) => (
+                    <div
+                      key={kanji.id}
+                      className="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-amber-50 transition"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="text-2xl font-bold">{kanji.character}</div>
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">{kanji.meaning}</div>
+                          <div className="text-xs text-gray-600">
+                            {[kanji.onyomi[0], kanji.kunyomi[0]].filter(Boolean).join(' · ')}
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => toggleBookmark(kanji.id)}
+                        className={`p-2 rounded-full transition ${
+                          kanji.isBookmarked
+                            ? 'bg-amber-100 text-amber-600'
+                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                        }`}
+                        title={kanji.isBookmarked ? 'Remove bookmark' : 'Bookmark'}
+                      >
+                        <Bookmark className={`w-5 h-5 ${kanji.isBookmarked ? 'fill-current' : ''}`} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500 text-center py-4">You don't have any bookmarked kanji yet.</p>
+              )}
+            </div>
+            <div className="px-5 py-3 border-t flex justify-end">
+              <button
+                onClick={() => setShowBookmarksModal(false)}
+                className="px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <style>{`
         .animate-fade-in {
