@@ -1,1 +1,3 @@
-import VocabsN3 from '../assets/Vocabs_N3.json';
+// Temporary file used by Copilot earlier; kept empty to avoid build errors.
+
+export {};
